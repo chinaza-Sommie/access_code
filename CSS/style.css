@@ -32,10 +32,15 @@
     width: 35px;
 }
 
+.body {
+    display: flex;
+    border: 1px solid red;
+    height: 100vh;
+}
+
 .dashboard_body_left {
     
     width: 180px;
-    height: 675px;
     border-right: 1px solid black;
 }
 
@@ -49,4 +54,53 @@
 
 .dashboard_body_left div:hover {
     background-color: #f0f0f0;
+}
+
+
+
+.main_body_div {
+    display: flex;
+    flex-direction: column;
+    width: 370px;
+    margin: 0 auto;
+    margin-top: 60px;
+    text-align: center;
+    
+
+}
+
+.individual {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.profile_img {
+    width: 60px;
+}
+
+.individual h3 {
+    margin-right: 10px; /* Add some space between label and value */
+}
+
+.individual div {
+    font-size: 15px; /* Add some space between label and value */
+}
+
+.update_button {
+    background-color: #8a8d86; /* Green */
+    border: none;
+    padding: 13px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 20px; /* Adjust margin as needed */
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2c2f2c; /* Darker green */
 }

@@ -1,0 +1,15 @@
+//- THIS IS FOR RESIDENT ACCESS LOGS
+
+extends security-layout
+block content 
+
+    .second_main_body
+        h2 RESIDENTS
+        .search_bar
+            img(src="search.png")
+        .residents_list
+            each resident in Array.from({ length: 16 })  
+                .resident
+                    h3 John Doe
+                    div 123 Main Street
+                    div +1 234 567 8901

@@ -16,7 +16,7 @@ const db = require("./services/db");
 
 // Create a route for root - /
 app.get("/", function (req, res) {
-  // res.render("resident-layout");
+  // res.render("login");
   res.render("residentPages/codeGenerator");
 });
 
@@ -30,6 +30,16 @@ app.get("/login", function (req, res) {
 // Route for Generating code
 app.get("/resident/generate-code", function (req, res) {
   res.render("residentPages/codeGenerator");
+});
+
+// Route for Checking History logs
+app.get("/resident/accesslogs", function (req, res) {
+  res.render("residentPages/access-logs");
+});
+
+// Route for Resident profile
+app.get("/resident/residentprofile", function (req, res) {
+  res.render("residentPages/resident_profile");
 });
 
 // ---- SECURITY ROUTES ----
@@ -46,6 +56,10 @@ app.get("/security/verify-code", function (req, res) {
 
 app.get("/security/profile", function (req, res) {
   res.render("securityPages/profile-security");
+});
+
+app.get("/security/resident-list", function (req, res) {
+  res.render("securityPages/resident_list");
 });
 
 // ACCESS LOGS PAGE (SECURITY)----

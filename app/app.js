@@ -67,6 +67,11 @@ app.get("/security/access-logs", function (req, res) {
   res.render("securityPages/access-logs");
 });
 
+// VISITORS LOG PAGE (SECURITY)
+app.get("/security/visitors-log", function (req, res) {
+    res.render("securityPages/visitors-log");
+  });
+  
 // Create a route for testing the db
 app.get("/db_test", function (req, res) {
   // Assumes a table called test_table exists in your database

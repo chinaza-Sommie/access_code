@@ -61,6 +61,15 @@
   float: left;
 }
 
+.second_main_body {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  text-align: center;
+  align-items: center;
+}
+
+
 .main_body_div {
   width: 100%;
 }
@@ -122,4 +131,126 @@ a {
   margin-top: -18px;
   color: black;
   text-decoration: none;
+}
+
+
+.individual {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.profile_img {
+  width: 60px;
+  margin-top: 60px;
+}
+
+.individual h3 {
+  margin-right: 10px; /* Add some space between label and value */
+}
+
+.individual div {
+  font-size: 15px; /* Add some space between label and value */
+}
+
+.update_button {
+  background-color: #8a8d86; /* Green */
+  border: none;
+  padding: 13px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 20px; 
+  cursor: pointer;
+  border-radius: 5px; 
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2c2f2c; 
+}
+
+
+.search_bar {
+  display: flex;
+  align-items: center;
+  padding: 7px;
+  background-color: #e0e0e0;
+  width: 500px;
+  border-radius: 5px;
+  margin-bottom: 30px; 
+  margin-top: 30px;
+}
+
+.search_bar img {
+  width: 20px; 
+  margin-right: 10px; 
+}
+
+
+.box_div {
+  background-color: #e0e0e0;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px; 
+  margin-bottom: 20px; 
+  width: 150vh;
+  margin-top: 5px;
+}
+
+.upper_box {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.upper_box div {
+  flex: 1;
+}
+
+.upper_box img {
+  width: 20px;
+}
+
+.line {
+  height: 1px;
+  background-color: black;
+}
+
+.lower_box {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.lower_box div {
+  margin-bottom: 5px; 
+  flex: 1;
+}
+
+.residents_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 900px;
+  padding: 5px;
+}
+
+.resident {
+  background-color: #e0e0e0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 30px;
+  margin-bottom: 20px;
+}
+
+.resident h3 {
+  margin-bottom: 10px;
+}
+
+.resident div {
+  margin-bottom: 5px;
 }

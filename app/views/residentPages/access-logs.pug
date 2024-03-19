@@ -2,5 +2,18 @@
 
 extends resident-layout
 block content 
-    //- PUT YOUR CODE HERE
-    p code here
+    .second_main_body
+        .search_bar
+        img(src="search.png")
+
+        each box in [1, 2, 3, 4, 5, 6]  
+            .box_div
+                .upper_box
+                    div John Snow
+                    div Plumbing
+                    img(src="delete.png")
+                .line
+                .lower_box
+                    div 25/03/2024
+                    div Valid from 10:00 - 12:00
+                    div Code Used

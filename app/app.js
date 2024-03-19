@@ -4,6 +4,10 @@ const express = require("express");
 // Create express app
 var app = express();
 
+// views connections
+app.set('view engine', 'pug');
+app.set('views', './app/views');
+
 // Add static files location
 app.use(express.static("static"));
 
@@ -14,7 +18,7 @@ const db = require('./services/db');
 
 // Create a route for root - /
 app.get("/", function(req, res) {
-    res.send("Hello world!");
+    res.render("index");
 });
 
 // Create a route for testing the db

@@ -16,7 +16,7 @@ const db = require("./services/db");
 
 // Create a route for root - /
 app.get("/", function (req, res) {
-  // res.render("resident-layout");
+  // res.render("login");
   res.render("residentPages/codeGenerator");
 });
 

@@ -36,14 +36,16 @@
   height: 530px;
 }
 .dashboard_body_left {
-  width: 180px;
+  width: 200px;
   border-right: 1px solid black;
+  padding-top: 10px;
 }
 
 .dashboard_body_left div {
   font-weight: 600;
   font-size: 17px;
-  padding: 12px 30px;
+  padding: 12px 0;
+  padding-left: 15px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }

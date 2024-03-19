@@ -17,7 +17,7 @@ const db = require("./services/db");
 // Create a route for root - /
 app.get("/", function (req, res) {
   // res.render("resident-layout");
-  res.render("codeGenerator");
+  res.render("residentPages/codeGenerator");
 });
 
 // Route for login page
@@ -29,7 +29,7 @@ app.get("/login", function (req, res) {
 
 // Route for Generating code
 app.get("/resident/generate-code", function (req, res) {
-  res.render("resident-layout/codeGenerator");
+  res.render("residentPages/codeGenerator");
 });
 
 // ---- SECURITY ROUTES ----

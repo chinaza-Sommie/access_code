@@ -1,0 +1,30 @@
+
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Document
+    //- link(rel="stylesheet", type='text/css', href="/CSS/style.css")
+    style
+      include ../../../assets/stylesheets/style.css
+  body
+    .dashboard_top
+      .dashboard_top_left
+        img(src="CAYZ LOGO 2.png")
+        h3.name CAYZ
+      .dashboard_top_right
+        h5 Account
+        img(src="Customer.png")
+    .body
+      .dashboard_body_left
+        div Register Resident
+        div Verify code
+        div Visitors log
+        div Alert
+        div Settings
+        div Log Out
+
+      .main_body_div
+        block content
+

@@ -1,0 +1,12 @@
+extends security-layout
+block content 
+    div(style="width:100%; display:flex; align-items:center; justify-content:center; height: 100%;flex-direction:column")
+        div(style="font-size:30px; line-height: 36.31px; font-weight: 800;font-family:Inter; color: #6C6A6A") Register Resident
+        form(style="display: flex; align-items:center; flex-direction: column; width: 40%; margin-top: 3%") 
+            input(type='text' name='name' placeholder="Resident name:" style="border:none; border-bottom:1px solid black; font-size:16px; margin-bottom:35px; width:100%")
+            input(type='text' name='name' placeholder="Resident Address:" style="border:none; border-bottom:1px solid black; font-size:16px; margin-bottom:35px; width:100%")
+            input(type='email' name='email' placeholder="Email Address:" style="border:none; border-bottom:1px solid black; font-size:16px; margin-bottom:35px; width:100%")
+            input(type='text' name='name' placeholder="Mobile Number: " style="border:none; border-bottom:1px solid black; font-size:16px; margin-bottom:35px; width:100%")
+            input(type='text' name='name' placeholder="Date of Birth: " style="border:none; border-bottom:1px solid black; font-size:16px; margin-bottom:35px; width:100%")
+
+            input(type='submit' name='generateCode' value='Submit' style='width:45%; background:black; color: white; outline:none; border: none; padding:15px 0; font-size:17px; margin-top:15px')

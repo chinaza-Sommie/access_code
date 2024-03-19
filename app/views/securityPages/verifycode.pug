@@ -1,0 +1,8 @@
+extends security-layout
+block content 
+    div(style="width:100%; display:flex; align-items:center; justify-content:center; height: 100%;flex-direction:column")
+        div(style="font-size:30px; line-height: 36.31px; font-weight: 800;font-family:Inter; color: #6C6A6A") Verify Code
+        form(style="display: flex; align-items:center; flex-direction: column; width: 40%; margin-top: 3%") 
+            input(type='text' name='name' placeholder="Enter Code Here" style="border:1px solid black; padding: 18px 0; text-align:center; font-size:17px; margin-bottom:35px; width:80%")
+
+            input(type='submit' name='generateCode' value='Confirm Access' style='width:40%; background:black; color: white; outline:none; border: none; padding:15px 0; font-size:17px; margin-top:15px')

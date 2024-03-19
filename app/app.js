@@ -32,6 +32,16 @@ app.get("/resident/generate-code", function (req, res) {
   res.render("residentPages/codeGenerator");
 });
 
+// Route for Checking History logs
+app.get("/resident/accesslogs", function (req, res) {
+  res.render("residentPages/access-logs");
+});
+
+// Route for Resident profile
+app.get("/resident/residentprofile", function (req, res) {
+  res.render("residentPages/resident_profile");
+});
+
 // ---- SECURITY ROUTES ----
 
 // Route for registering residents
@@ -48,11 +58,20 @@ app.get("/security/profile", function (req, res) {
   res.render("securityPages/profile-security");
 });
 
+app.get("/security/resident-list", function (req, res) {
+  res.render("securityPages/resident_list");
+});
+
 // ACCESS LOGS PAGE (SECURITY)----
 app.get("/security/access-logs", function (req, res) {
   res.render("securityPages/access-logs");
 });
 
+// VISITORS LOG PAGE (SECURITY)
+app.get("/security/visitors-log", function (req, res) {
+    res.render("securityPages/visitors-log");
+  });
+  
 // Create a route for testing the db
 app.get("/db_test", function (req, res) {
   // Assumes a table called test_table exists in your database

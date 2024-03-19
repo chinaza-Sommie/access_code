@@ -16,12 +16,16 @@ block content
             th Code status
             th entry time
             th exit time
-        tr
-            td Code Green
-            td 012123
-            td Jon Snow
-            td 25/03/2024
-            td Plumbing
-            td Used
-            td 12:00
-            td 17:00
+
+        for i in data
+            tr
+                td #{i.name}
+                td #{i.code}
+                td #{i.visitors}
+                td 25/03/2024
+                td Plumbing
+                td #{i.status}
+                td 12:00
+                td 17:00
+
+    - console.log(data)

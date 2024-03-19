@@ -55,7 +55,13 @@ app.get("/security/access-logs", function (req, res) {
 
 // VISITORS LOG PAGE (SECURITY)
 app.get("/security/visitors-log", function (req, res) {
-    res.render("securityPages/visitors-log");
+    var sql = 
+    "SELECT ct.Code_Value as code, ct.Visitors_Name as visitors, ct.Code_Status as status, ut.User_Name as name from codes_table ct JOIN user_table ut on ut.User_ID = ct.User_ID";
+
+    db.query(sql).then((results) => {
+        res.render("securityPages/visitors-log", { data: results });
+        // console.log(results)
+      });
   });
   
 // Create a route for testing the db

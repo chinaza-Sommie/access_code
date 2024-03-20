@@ -1,11 +1,10 @@
 extends resident-layout
 block content 
-    div(style="width:100%; display:flex; align-items:center; justify-content:center; height: 100%;flex-direction:column")
-        div(style="font-size:30px; line-height: 36.31px; font-weight: 800;font-family:Inter; color: #6C6A6A") Generate Code
-        form(style="display: flex; align-items:center; flex-direction: column; width: 40%; margin-top: 3%") 
-            input(type='text' name='name' placeholder="Visitor's name:" style="border:none; border-bottom:1px solid black; font-size:16px; margin-bottom:35px; width:100%")
-            input(type='text' name='name' placeholder="Purpose of visit:" style="border:none; border-bottom:1px solid black; font-size:16px; margin-bottom:35px; width:100%")
-            input(type='text' name='name' placeholder="Purpose of visit:" style="border:none; border-bottom:1px solid black; font-size:16px; margin-bottom:35px; width:100%")
-            input(type='text' name='name' placeholder="Time Expired: " style="border:none; border-bottom:1px solid black; font-size:16px; margin-bottom:35px; width:100%")
-
-            input(type='submit' name='generateCode' value='Generate Codes' style='width:45%; background:black; color: white; outline:none; border: none; padding:15px 0; font-size:17px; margin-top:15px')
+    div.code-gen-container
+        div.heading Generate Code
+        form.form-container
+            input(type='text' name='name' placeholder="Visitor's name:" class="input-field")
+            input(type='text' name='purpose' placeholder="Purpose of visit:" class="input-field")
+            input(type='text' name='location' placeholder="Location:" class="input-field")
+            input(type='text' name='timeExpired' placeholder="Time Expired:" class="input-field")
+            input.btn(type='submit' name='generateCode' value='Generate Codes')

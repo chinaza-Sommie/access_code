@@ -1,15 +1,15 @@
-//- THIS IS FOR SECURITY PROFILE 
+//- THIS IS FOR RESIDENT PROFILE 
 
 extends resident-layout
 block content 
     .second_main_body
         .img_name
-            img.profile_img(src="Customer.png")
-            h3 Code Green
+            img.profile_img(src="/images/Customer.png")
+            h3 #{data.User_Name}
         div
             .individual
                 h3 Name:
-                div Code Green
+                div #{data.User_Name}
             .individual
                 h3 Email address:
                 div Codegreen@gmail.com
@@ -21,10 +21,10 @@ block content
                 div ********
             .individual
                 h3 House Address:
-                div House 234 Gregory avenue
+                div #{data.Address}
             .individual
                 h3 Mobile number:
-                div 7344572834
+                div #{data.Phone_Number}
             button.update_button UPDATE PROFILE
 
         

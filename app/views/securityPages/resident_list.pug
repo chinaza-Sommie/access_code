@@ -6,10 +6,10 @@ block content
     .second_main_body
         h2 RESIDENTS
         .search_bar
-            img(src="search.png")
+            img(src="/images/search-icon 1.png")
         .residents_list
-            each resident in Array.from({ length: 16 })  
+            for i in data
                 .resident
-                    h3 John Doe
-                    div 123 Main Street
-                    div +1 234 567 8901
+                    h3 #{i.User_Name}
+                    div #{i.Address}
+                    div #{i.Phone_Number}

@@ -197,14 +197,13 @@ a {
   font-size: 16px;
 }
 
-.visitors .userName:hover{
-  
-}
-
 .visitors tr:nth-child(even){
   background-color: #f2f2f2;
 }
 
+.visitors .userName:hover{
+  background-color: #848181;
+}
 
 .individual {
   display: flex;

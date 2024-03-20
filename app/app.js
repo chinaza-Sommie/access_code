@@ -74,6 +74,11 @@ app.get("/security/verify-code", function (req, res) {
   res.render("securityPages/verifycode");
 });
 
+// Route for send alert
+app.get("/security/alert", function (req, res) {
+  res.render("securityPages/alert");
+});
+
 // app.get("/security/profile", function (req, res) {
 //   res.render("securityPages/profile-security");
 // });

@@ -83,7 +83,9 @@ app.get("/security/resident-list", function (req, res) {
     "SELECT * FROM user_table WHERE User_role = 'Resident'";
     db.query(userTableSql).then((results) => {
         res.render("securityPages/resident_list", { data: results });
+
     });
+    // res.render("securityPages/resident_list");
 });
 
 

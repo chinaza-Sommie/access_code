@@ -2,14 +2,30 @@
 
 extends security-layout
 block content 
+    .visitors-log-cont
+        h3.visitors-subheader RESIDENTS
+        .search-container
+            .search-icon-cont
+                img(src="/images/search-icon 1.png")
+            input(type="text")
+    table.visitors
+        tr
+            th resident's name
+            th Address 
+            th Email
+            th Date of Birth
+            th Registration Date
+            
 
-    .second_main_body
-        h2 RESIDENTS
-        .search_bar
-            img(src="/images/search-icon 1.png")
-        .residents_list
-            for i in data
-                .resident
-                    h3 #{i.User_Name}
-                    div #{i.Address}
-                    div #{i.Phone_Number}
+        for i in data
+            tr
+                td.userName
+                    a(href='/profile/' + i.User_ID) #{i.User_Name}
+                td #{i.Address}
+                td email@gmail.com
+                td #{i.Phone_Number}
+                td 27/06/2000
+                               
+
+
+    

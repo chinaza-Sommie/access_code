@@ -191,6 +191,16 @@ a {
   text-align: center;
 }
 
+.visitors td a{
+  width: 100%;
+  padding-top: 16px;
+  font-size: 16px;
+}
+
+.visitors .userName:hover{
+  
+}
+
 .visitors tr:nth-child(even){
   background-color: #f2f2f2;
 }

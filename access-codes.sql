@@ -56,7 +56,7 @@ INSERT INTO `codes_table` (`Code_ID`, `Code_Value`, `Visitors_Name`, `Code_Statu
 CREATE TABLE `user_table` (
   `User_ID` int NOT NULL,
   `User_Name` varchar(255) NOT NULL,
-  `Address` varchar(255) DEFAULT NULL,
+  `Email_Address` varchar(255) DEFAULT NULL,
   `Phone_Number` varchar(15) DEFAULT NULL,
   `User_role` enum('Security','Resident') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -65,10 +65,10 @@ CREATE TABLE `user_table` (
 -- Dumping data for table `user_table`
 --
 
-INSERT INTO `user_table` (`User_ID`, `User_Name`, `Address`, `Phone_Number`, `User_role`) VALUES
-(1, 'John Doe', '123 Main St John', '123-456-7890', 'Resident'),
-(2, 'Jane Smith', '456 Elm groove', '987-654-3210', 'Security'),
-(3, 'Bob Johnson', '789 Oak House', '555-123-4567', 'Resident');
+INSERT INTO `user_table` (`User_ID`, `User_Name`, `Email_Address`, `Phone_Number`, `User_role`) VALUES
+(1, 'John Doe', '123@gmail.com', '123-456-7890', 'Resident'),
+(2, 'Jane Smith', '456@gmail.com', '987-654-3210', 'Security'),
+(3, 'Bob Johnson', '789@gmail.com', '555-123-4567', 'Resident');
 
 --
 -- Indexes for dumped tables

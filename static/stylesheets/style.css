@@ -153,6 +153,7 @@ a {
   padding: 5px 15px;
   border-radius: 25px;
   width: 648px; 
+  
 }
 
 .search-icon-cont{
@@ -266,7 +267,7 @@ button:hover {
   border-radius: 5px; 
   margin-bottom: 20px; 
   width: 150vh;
-  margin-top: 5px;
+  margin-top: 15px;
 }
 
 .upper_box {

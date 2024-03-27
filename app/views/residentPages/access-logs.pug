@@ -2,18 +2,37 @@
 
 extends resident-layout
 block content 
-    .second_main_body
-        .search_bar
-        img(src="/images/search-icon 1.png")
+    .visitors-log-cont
+        h3.visitors-subheader Access Log
+        .search-container
+            .search-icon-cont
+                img(src="/images/search-icon 1.png")
+            input(type="text")
+    table.visitors
+        tr
+            th visitor's name
+            th purpose of visit
+            th Date
+            th Code value
+            th Code status
+            th Entry time
+            th Exit time
+            th Action
 
-        for i in data  
-            .box_div
-                .upper_box
-                    div #{i.visitors}
-                    div Plumbing
-                    img(src="delete.png")
-                .line
-                .lower_box
-                    div 25/03/2024
-                    div Valid from 10:00 - 12:00
-                    div #{i.status}
+        for i in data
+            tr
+                td #{i.visitors}
+                td Plumbing
+                td 25/03/2024
+                td #{i.code}
+                td #{i.status}
+                td 12:00
+                td 17:00
+                td Delete 
+
+    - console.log(data)
+    
+    
+    
+
+        

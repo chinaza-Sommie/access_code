@@ -25,6 +25,11 @@ app.get("/login", function (req, res) {
   res.render("login");
 });
 
+// Route for landing page
+app.get("/landing_page", function (req, res) {
+  res.render("landingpage");
+});
+
 // ------ RESIDENT ROUTES ----
 
 // Route for Generating code

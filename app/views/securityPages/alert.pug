@@ -1,0 +1,8 @@
+extends security-layout
+block content 
+    div.verifyCode-container
+        div.heading Alert
+        form.formfield
+            input(type='text' name='name' placeholder="Enter alert message" class="inputField")
+
+            input.submitbtn(type='submit' name='Sendalert' value='Send message')

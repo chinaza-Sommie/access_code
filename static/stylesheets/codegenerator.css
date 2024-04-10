@@ -1,0 +1,74 @@
+.code-gen-container,
+.verifyCode-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    flex-direction: column;
+}
+
+.code-gen-container .heading,
+.verifyCode-container .heading {
+    font-size: 30px;
+    line-height: 36.31px;
+    font-weight: 800;
+    font-family: Inter;
+    color: #6C6A6A;
+}
+
+.code-gen-container .form-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 40%;
+    margin-top: 3%;
+}
+
+.code-gen-container .form-container .input-field {
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 16px;
+    margin-bottom: 35px;
+    width: 100%;
+}
+
+.code-gen-container .form-container .btn {
+    width: 45%;
+    background: black;
+    color: white;
+    outline: none;
+    border: none;
+    padding: 15px 0;
+    font-size: 17px;
+    margin-top: 15px;
+}
+
+/* style for code verification */
+.verifyCode-container form{
+    display: flex;
+    align-items:center;
+    flex-direction: column;
+    width: 40%;
+    margin-top: 3%;
+}
+
+.verifyCode-container .formfield .inputField{
+    border:1px solid black;
+    padding: 18px 0;
+    text-align:center;
+    font-size:17px;
+    margin-bottom:35px;
+    width:80%;
+}
+
+.verifyCode-container form .submitbtn{
+    width:40%;
+    background:black;
+    color: white;
+    outline:none; 
+    border: none;
+    padding:15px 0;
+    font-size:17px;
+    margin-top:15px
+}

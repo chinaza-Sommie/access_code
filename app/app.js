@@ -33,13 +33,33 @@ app.get("/resident/generate-code", function (req, res) {
 });
 
 // Route for Checking History logs
-app.get("/resident/accesslogs", function (req, res) {
-  res.render("residentPages/access-logs");
+app.get("/resident/accesslogs/:id", function (req, res) {
+    var resLog = req.params.id;
+    var accesssql = 
+    "SELECT ct.Code_Value as code, ct.Visitors_Name as visitors, ct.Code_Status as status, ut.User_Name as name from codes_table ct JOIN user_table ut on ut.User_ID = ct.User_ID WHERE ct.User_ID = ?";
+
+    db.query(accesssql, [resLog]).then((results) => {
+        res.render("residentPages/access-logs", { data: results });
+        
+    });
+  
 });
 
 // Route for Resident profile
-app.get("/resident/residentprofile", function (req, res) {
-  res.render("residentPages/resident_profile");
+app.get("/profile/:id", function (req, res) {
+    var resProfile = req.params.id;
+
+    var residentSql = "SELECT * FROM user_table WHERE User_ID = ?";
+
+    db.query(residentSql, [resProfile]).then((results) => {
+        
+        if (results[0].User_role == 'Resident'){
+            res.render("residentPages/resident-profile", { data: results[0] });
+        }else{
+            res.render("securityPages/profile-security", { data: results[0] });
+        }
+     
+    });
 });
 
 // ---- SECURITY ROUTES ----
@@ -54,18 +74,19 @@ app.get("/security/verify-code", function (req, res) {
   res.render("securityPages/verifycode");
 });
 
-app.get("/security/profile", function (req, res) {
-  res.render("securityPages/profile-security");
-});
+// app.get("/security/profile", function (req, res) {
+//   res.render("securityPages/profile-security");
+// });
 
 app.get("/security/resident-list", function (req, res) {
-  res.render("securityPages/resident_list");
+    var userTableSql = 
+    "SELECT * FROM user_table WHERE User_role = 'Resident'";
+    db.query(userTableSql).then((results) => {
+        res.render("securityPages/resident_list", { data: results });
+    });
 });
 
-// ACCESS LOGS PAGE (SECURITY)----
-app.get("/security/access-logs", function (req, res) {
-  res.render("securityPages/access-logs");
-});
+
 
 // VISITORS LOG PAGE (SECURITY)
 app.get("/security/visitors-log", function (req, res) {
@@ -75,35 +96,10 @@ app.get("/security/visitors-log", function (req, res) {
     db.query(sql).then((results) => {
         res.render("securityPages/visitors-log", { data: results });
         // console.log(results)
-      });
+    });
   });
   
-// Create a route for testing the db
-app.get("/db_test", function (req, res) {
-  // Assumes a table called test_table exists in your database
-  sql = "select * from test_table";
-  db.query(sql).then((results) => {
-    console.log(results);
-    res.send(results);
-  });
-});
 
-// Create a route for /goodbye
-// Responds to a 'GET' request
-app.get("/goodbye", function (req, res) {
-  res.send("Goodbye world!");
-});
-
-// Create a dynamic route for /hello/<name>, where name is any value provided by user
-// At the end of the URL
-// Responds to a 'GET' request
-app.get("/hello/:name", function (req, res) {
-  // req.params contains any parameters in the request
-  // We can examine it in the console for debugging purposes
-  console.log(req.params);
-  //  Retrieve the 'name' parameter and use it in a dynamically generated page
-  res.send("Hello " + req.params.name);
-});
 
 // Start server on port 3000
 app.listen(3000, function () {

@@ -260,47 +260,6 @@ button:hover {
 }
 
 
-.box_div {
-  background-color: #e0e0e0;
-  border: 1px solid #e0e0e0;
-  border-radius: 5px; 
-  margin-bottom: 20px; 
-  width: 150vh;
-  margin-top: 5px;
-}
-
-.upper_box {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.upper_box div {
-  flex: 1;
-}
-
-.upper_box img {
-  width: 20px;
-}
-
-.line {
-  height: 1px;
-  background-color: black;
-}
-
-.lower_box {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.lower_box div {
-  margin-bottom: 5px; 
-  flex: 1;
-}
-
 .residents_list {
   display: flex;
   flex-wrap: wrap;

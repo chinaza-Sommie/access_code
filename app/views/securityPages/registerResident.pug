@@ -1,12 +1,12 @@
 
-extends resident-layout
+extends security-layout
 block content 
     div.code-gen-container
-        div.heading Generate Code
+        div.heading Registration
         form.form-container
             input(type='text' name='name' placeholder="Resident name:" class="input-field")
             input(type='text' name='location' placeholder="Resident Address:" class="input-field")
             input(type='text' name='timeExpired' placeholder="Email Address:" class="input-field")
             input(type='text' name='timeExpired' placeholder="Mobile Number: " class="input-field")
             input(type='text' name='timeExpired' placeholder="Date of Birth: " class="input-field")
-            input.btn(type='submit' name='generateCode' value='Generate Codes')
+            input.btn(type='submit' name='generateCode' value='Submit')

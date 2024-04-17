@@ -25,6 +25,11 @@ app.get("/login", function (req, res) {
   res.render("login");
 });
 
+// Route for landing page
+app.get("/landing_page", function (req, res) {
+  res.render("landingpage");
+});
+
 // ------ RESIDENT ROUTES ----
 
 // Route for Generating code
@@ -74,6 +79,11 @@ app.get("/security/verify-code", function (req, res) {
   res.render("securityPages/verifycode");
 });
 
+// Route for send alert
+app.get("/security/alert", function (req, res) {
+  res.render("securityPages/alert");
+});
+
 // app.get("/security/profile", function (req, res) {
 //   res.render("securityPages/profile-security");
 // });
@@ -83,7 +93,9 @@ app.get("/security/resident-list", function (req, res) {
     "SELECT * FROM user_table WHERE User_role = 'Resident'";
     db.query(userTableSql).then((results) => {
         res.render("securityPages/resident_list", { data: results });
+
     });
+    // res.render("securityPages/resident_list");
 });
 
 

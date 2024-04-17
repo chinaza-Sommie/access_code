@@ -153,6 +153,7 @@ a {
   padding: 5px 15px;
   border-radius: 25px;
   width: 648px; 
+  
 }
 
 .search-icon-cont{
@@ -191,10 +192,19 @@ a {
   text-align: center;
 }
 
+.visitors td a{
+  width: 100%;
+  padding-top: 16px;
+  font-size: 16px;
+}
+
 .visitors tr:nth-child(even){
   background-color: #f2f2f2;
 }
 
+.visitors .userName:hover{
+  background-color: #848181;
+}
 
 .individual {
   display: flex;
@@ -257,7 +267,7 @@ button:hover {
   border-radius: 5px; 
   margin-bottom: 20px; 
   width: 150vh;
-  margin-top: 5px;
+  margin-top: 15px;
 }
 
 .upper_box {

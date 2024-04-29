@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #1a1818;
+  border-bottom: 2px solid #00BFFF;
   height: 50px;
   width: 100%;
 }
@@ -37,7 +37,7 @@
 }
 .dashboard_body_left {
   width: 200px;
-  border-right: 1px solid black;
+  border-right: 2px solid #00BFFF;
   padding-top: 10px;
 }
 

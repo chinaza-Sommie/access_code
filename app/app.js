@@ -13,6 +13,8 @@ app.use(express.static("static"));
 
 // Get the functions in the db.js file to use
 const db = require("./services/db");
+app.use(express.urlencoded({ extended: true}))
+const { User } = require("./models/user");
 
 // Create a route for root - /
 app.get("/", function (req, res) {
@@ -111,6 +113,7 @@ app.get("/security/visitors-log", function (req, res) {
     });
   });
   
+app.post()
 
 
 // Start server on port 3000

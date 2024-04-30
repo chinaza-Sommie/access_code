@@ -4,6 +4,9 @@ const express = require("express");
 // Create express app
 var app = express();
 
+// accept form input
+app.use(express.urlencoded({ extended: true }));
+
 // views connection
 app.set("view engine", "pug");
 app.set("views", "./app/views");
@@ -111,6 +114,16 @@ app.get("/security/visitors-log", function (req, res) {
     });
   });
   
+app.post("/send-alert", function (req, res) {
+  try {
+      // Just a console.log for now to check we are receiving the form field values
+      console.log(req.body);
+  } catch (err) {
+      console.error(`Error while adding note `, err.message);
+  }
+  // Just a little output for now
+  res.send('form submitted');
+});
 
 
 // Start server on port 3000

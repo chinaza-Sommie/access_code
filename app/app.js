@@ -1,8 +1,12 @@
 // Import express.js
 const express = require("express");
 
+const { Alerts } = require("./models/alerts");
 // Create express app
 var app = express();
+
+// accept form input
+app.use(express.urlencoded({ extended: true }));
 
 // views connection
 app.set("view engine", "pug");
@@ -111,6 +115,27 @@ app.get("/security/visitors-log", function (req, res) {
     });
   });
   
+app.post("/send-alert", async function (req, res) {
+  params = req.body
+  if (params.message == ''){
+    res.render("securityPages/alert", {errorMessage: 'Oops!! This field cannot be empty. Try again.' });
+  }else{
+    try {
+      params = req.body
+      
+      
+      senderId = 1
+      alerts = new Alerts(senderId)
+      await alerts.postAlerts(params.message, senderId)
+      console.log(alerts);
+      res.render("securityPages/alert", {successMessage: 'Alert message has been sent successfuly!' });
+    } catch (err) {
+        
+        res.render("securityPages/alert", {errorMessage: err.message });
+    }
+  }
+ 
+});
 
 
 // Start server on port 3000

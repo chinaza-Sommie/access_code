@@ -3,7 +3,16 @@ extends security-layout
 block content 
     div.verifyCode-container
         div.heading Alert
+
         form.formfield(method='POST', action='/send-alert')
+            //- message display starts here
+            if errorMessage
+                p(style='border:1px solid red; background-color:#f8d7da; text-align:center; color: red; width: 80%; padding: 6px; border-radius: 5px; font-weight:bold') #{errorMessage}
+            else if successMessage
+                p(style='border:1px solid green; background-color:#d4edda; text-align:center; color: green; width: inherit; padding: 6px; border-radius: 5px; font-weight:bold') #{successMessage}
+            //- message display ends here
+
+            //- form input for messages to be sent
             input(type='text' name='message' placeholder="Enter Alert Message" class="inputField")
 
             input.submitbtn(type='submit' name='generateCode' value='Send message')

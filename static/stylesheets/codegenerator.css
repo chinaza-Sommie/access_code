@@ -33,15 +33,46 @@
     width: 100%;
 }
 
-.code-gen-container .form-container .btn {
-    width: 45%;
-    background: black;
+.code-gen-container .dob-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 3%;
+}
+
+.dob-container {
+    display: flex;
+}
+.dob-container select {
+    flex: 1;
+    margin-right: 10px;
+}
+
+/* .code-gen-container .form-container .btn { */
+    /* width: 100%;
+    background: #0a6684;
     color: white;
     outline: none;
     border: none;
     padding: 15px 0;
     font-size: 17px;
     margin-top: 15px;
+    text-transform: uppercase;
+} */
+
+/* styling for all buttons, use class=all_btn  */
+.all_btn {
+    width: 100%;
+    background: #0a6684;
+    color: white;
+    outline: none;
+    border: none;
+    padding: 15px 0;
+    font-size: 17px;
+    margin-top: 15px;
+    text-transform: uppercase; 
+    cursor: pointer;
 }
 
 /* style for code verification */

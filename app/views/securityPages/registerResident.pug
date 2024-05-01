@@ -1,23 +1,17 @@
 
-<<<<<<< HEAD
 extends resident-layout
+
+//- this is the title of this page (template view)
+block title 
+    title Register Resident
+
 block content 
     div.code-gen-container
         div.heading Generate Code
-=======
-extends security-layout
-block content 
-    div.code-gen-container
-        div.heading Registration
->>>>>>> 01a64fdd9f68c1ebfe879b761c6597b685c28b4c
         form.form-container
             input(type='text' name='name' placeholder="Resident name:" class="input-field")
             input(type='text' name='location' placeholder="Resident Address:" class="input-field")
             input(type='text' name='timeExpired' placeholder="Email Address:" class="input-field")
             input(type='text' name='timeExpired' placeholder="Mobile Number: " class="input-field")
             input(type='text' name='timeExpired' placeholder="Date of Birth: " class="input-field")
-<<<<<<< HEAD
-            input.btn(type='submit' name='generateCode' value='Generate Codes')
-=======
             input.btn(type='submit' name='generateCode' value='Submit')
->>>>>>> 01a64fdd9f68c1ebfe879b761c6597b685c28b4c

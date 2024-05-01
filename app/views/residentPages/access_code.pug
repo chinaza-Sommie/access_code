@@ -4,7 +4,7 @@ block title
 block content 
     div.code-gen-container
         div.heading Generate Code
-        form.form-container(method="POST", action="/access-code-generator")
+        form.form-container
             //- message display starts here
             if errorMessage
                 p(style='border:1px solid red; background-color:#f8d7da; text-align:center; color: red; width: 80%; padding: 6px; border-radius: 5px; font-weight:bold') #{errorMessage}
@@ -15,5 +15,5 @@ block content
             input(type='text' name='name' placeholder="Visitor's name:" class="input-field")
             input(type='text' name='purpose' placeholder="Purpose of visit:" class="input-field")
             input(type='text' name='location' placeholder="Location:" class="input-field")
-            input(type='date' name='timeExpired' placeholder="Time Expired:" class="input-field")
+            input(type='text' name='timeExpired' placeholder="Time Expired:" class="input-field")
             input.btn(type='submit' name='generateCode' value='Generate Code')

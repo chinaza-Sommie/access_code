@@ -1,12 +1,30 @@
 
-extends resident-layout
+extends security-layout
 block content 
     div.code-gen-container
-        div.heading Generate Code
-        form.form-container
+        div.heading Registration
+        form.form-container (action='/add-register', method='POST')
             input(type='text' name='name' placeholder="Resident name:" class="input-field")
             input(type='text' name='location' placeholder="Resident Address:" class="input-field")
-            input(type='text' name='timeExpired' placeholder="Email Address:" class="input-field")
-            input(type='text' name='timeExpired' placeholder="Mobile Number: " class="input-field")
-            input(type='text' name='timeExpired' placeholder="Date of Birth: " class="input-field")
-            input.btn(type='submit' name='generateCode' value='Generate Codes')
+            input(type='text' name='email' placeholder="Email Address:" class="input-field")
+            input(type='text' name='mobile' placeholder="Mobile Number:" class="input-field")
+            //- Date of Birth Input and Dropdowns
+            .dob-container
+                input(type='text' name='dob' placeholder="Date of Birth: " class="dob-input input-field" onclick="toggleDateDropdowns()")
+                .dob-dropdowns(style='display: none;')
+                    select(name='day' class='input-field')
+                        option(value='') Day
+                        - for (let i = 1; i <= 31; i++)
+                            option(value=i)= i
+                    select(name='month' class='input-field')
+                        option(value='') Month
+                        - const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+                        - for (let i = 0; i < months.length; i++)
+                            option(value=i + 1)= months[i]
+                    select(name='year' class='input-field')
+                        option(value='') Year
+                        - for (let i = 2006; i >= 1920; i--)
+                            option(value=i)= i
+            //- End of Date of Birth Input and Dropdowns
+            input(type='password' name='password' placeholder="Password:" class="input-field")
+            input.all_btn(type='submit' name='generateCode' value='Submit')

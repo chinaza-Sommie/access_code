@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Mar 19, 2024 at 09:03 PM
+-- Generation Time: Apr 30, 2024 at 09:43 AM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.8
 
@@ -20,6 +20,19 @@ SET time_zone = "+00:00";
 --
 -- Database: `access-codes`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `alerts`
+--
+
+CREATE TABLE `alerts` (
+  `id` int NOT NULL,
+  `message` varchar(255) NOT NULL,
+  `sender` int NOT NULL,
+  `date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -56,23 +69,31 @@ INSERT INTO `codes_table` (`Code_ID`, `Code_Value`, `Visitors_Name`, `Code_Statu
 CREATE TABLE `user_table` (
   `User_ID` int NOT NULL,
   `User_Name` varchar(255) NOT NULL,
-  `Address` varchar(255) DEFAULT NULL,
+  `Email_Address` varchar(255) DEFAULT NULL,
   `Phone_Number` varchar(15) DEFAULT NULL,
-  `User_role` enum('Security','Resident') NOT NULL
+  `User_role` enum('Security','Resident') NOT NULL,
+  `Password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `user_table`
 --
 
-INSERT INTO `user_table` (`User_ID`, `User_Name`, `Address`, `Phone_Number`, `User_role`) VALUES
-(1, 'John Doe', '123 Main St John', '123-456-7890', 'Resident'),
-(2, 'Jane Smith', '456 Elm groove', '987-654-3210', 'Security'),
-(3, 'Bob Johnson', '789 Oak House', '555-123-4567', 'Resident');
+INSERT INTO `user_table` (`User_ID`, `User_Name`, `Email_Address`, `Phone_Number`, `User_role`, `Password`) VALUES
+(1, 'John Doe', '123@gmail.com', '123-456-7890', 'Resident', '$2a$10$w.9MBBed6KLqouHlFrgeHOuLhjc8agmgel00CDMwDLbO7klHwLOWy'),
+(2, 'Jane Smith', '456@gmail.com', '987-654-3210', 'Security', '$2a$10$z3JF.zpDjWYvVYljgd.UBOPd5t2LFGLxxQucX0RUpLJyEJUhqO76.'),
+(3, 'Bob Johnson', '789@gmail.com', '555-123-4567', 'Resident', '$2a$10$MSPQldHEJrvAFV8iMcsaC.w3JARVw3Jev4dDjcVEV/U8eC.USM9ta');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `alerts`
+--
+ALTER TABLE `alerts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_sender_user` (`sender`);
 
 --
 -- Indexes for table `codes_table`
@@ -92,6 +113,12 @@ ALTER TABLE `user_table`
 --
 
 --
+-- AUTO_INCREMENT for table `alerts`
+--
+ALTER TABLE `alerts`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `codes_table`
 --
 ALTER TABLE `codes_table`
@@ -106,6 +133,12 @@ ALTER TABLE `user_table`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `alerts`
+--
+ALTER TABLE `alerts`
+  ADD CONSTRAINT `fk_sender_user` FOREIGN KEY (`sender`) REFERENCES `user_table` (`User_ID`);
 
 --
 -- Constraints for table `codes_table`

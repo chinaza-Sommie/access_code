@@ -9,10 +9,6 @@ const { Codes } = require("./models/codes");
 // Create express app
 var app = express();
 
-<<<<<<< HEAD
-// accept form input
-app.use(express.urlencoded({ extended: true }));
-=======
 // Set the sesssions
 var session = require('express-session');
 app.use(session({
@@ -21,7 +17,6 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false }
 }));
->>>>>>> nisenro
 
 // Sessions to login
 var session = require('express-session');
@@ -167,30 +162,6 @@ app.get("/security/visitors-log", function (req, res){
       res.render("securityPages/visitors-log", { data: results });
       // console.log(results)
   });
-<<<<<<< HEAD
-  
-app.post("/send-alert", async function (req, res) {
-  params = req.body
-  if (params.message == ''){
-    res.render("securityPages/alert", {errorMessage: 'Oops!! This field cannot be empty. Try again.' });
-  }else{
-    try {
-      params = req.body
-      
-      
-      senderId = 1
-      alerts = new Alerts(senderId)
-      await alerts.postAlerts(params.message, senderId)
-      console.log(alerts);
-      res.render("securityPages/alert", {successMessage: 'Alert message has been sent successfuly!' });
-    } catch (err) {
-        
-        res.render("securityPages/alert", {errorMessage: err.message });
-    }
-  }
- 
-});
-=======
 });
 
 // Logout
@@ -247,7 +218,6 @@ app.post('/authenticate', async function (req, res) {
   }
 });
 
->>>>>>> nisenro
 
 
 app.post("/login-auth", async function (req, res) {

@@ -1,142 +1,163 @@
-doctype html
-html(lang="en")
+//- extends index 
+
+html
   head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title CAYZ
-    link(rel="stylesheet", type='text/css', href="/stylesheets/style.css")
+    //- meta(charset="UTF-8")
+    //- meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Landing
+    //- link(rel='stylesheet', href='../CSS/landing.css')
+    style
+      include ../../static/stylesheets/landing.css
+      
+  body
+    #home.landing_body
+      .top
+        .top_left
+          img(src='/images/logo.png')
+          h3.name CAYZ
+        .top_right
+          a(href='#home') 
+            h5 Home
+          a(href='#about') 
+            h5 About us
+          a(href='#features') 
+            h5 Features
+          a(href='#faqtop') 
+            h5 FAQs
+          a(href='#interestForm')
+            h5(style='margin-top: 20px;')
+              button(style='border-radius: 20px; background-color: blue; width: 80px; padding: 10px; color: white; font-weight: bold; border: none;') Join us
 
-  body(style="margin: 0;")
-    
-    .Top_bar(style="height: 50px; width: 100%; opacity: 0.5; position: fixed; top: 0; left: 0; background-color: white; z-index: 9999; display: flex; align-items: center; justify-content: space-between;")
-      .logo(style="margin-right: 10px;")
-        img(src="/images/logo.png", style="opacity: 1; width: 35px; height: auto;")
-      ul(style="display: flex; list-style: none; padding: 0; margin: 0;")
-        li
-          a(href="#", style="font-size: 28px;") Home
-        li.divider &nbsp;&nbsp;&nbsp;    
-        li
-          a(href="#", style="font-size: 28px;") About us
-        li.divider &nbsp;&nbsp;&nbsp;    
-        li
-          a(href="#", style="font-size: 28px;") Support
-        li.divider &nbsp;&nbsp;&nbsp;    
-        li
-          a(href="#", style="font-size: 28px;") Join us
-        li.divider &nbsp;&nbsp;&nbsp; 
-    
-    .Opening_picture
-      .module(style="position: relative; background-image: url('/images/landing_city.jpg'); background-size: cover; text-align: center; overflow: hidden; padding: 0; margin: 0;")
-        img(src="/images/landing_city.jpg", alt="City Image", style="width: 100%; height: auto;")
-        .content(style="position: absolute; top: 50%; left: 0; transform: translateY(-50%); text-align: left; padding: 0 20px; display: flex; flex-direction: column; align-items: center;")
-          p(style="font-size: 80px; color: white; text-align: center; margin-bottom: 20px; line-height: 1.2;") 
-            | Make granting access
-            br
-            | to guest easier
-          a(href="#" style="border-radius: 24px; padding: 10px 20px; background-color: #523CD5; color: white; font-size: 24px; border: none; margin-top: 20px;")
-            | Login &nbsp; 
-            span &rarr;
+    .landing_image_overlay
+      .first_landing
+        .landing_content
+          h1 Make granting access to guests easier
+          h2 Enjoy peace of mind knowing all is secure.
 
-    // How does it work
-    .howwork(style="margin: 20px auto; width: 90%; background-color: #5970C3; border-radius: 10px; padding: 20px; position: relative;")
-      h2(style="font-size: 4rem; text-align: center; color: white;") How does it work?
-      p(style="font-size: 2.5rem; color: white;") 
-        | 1. For the residents:
-        br
-        | Users use CAYZ to set up and manage their security code.
-        br
-        | Residents can also create code for visitors.
-        br
-        | 2. For security:
-        br
-        | The security team has access to the system to legally secure every resident.
-        br
-        | They can initiate alerts to quickly respond to security incidents.
-        br
-        | &nbsp;
-      .button-container(style="position: absolute; bottom: 20px; right: 50px;")
-        a(href="#" style="display: inline-block; text-align: center; border-radius: 24px; padding: 10px 20px; background-color: #523CD5; color: white; font-size: 24px; border: none; text-decoration: none;")
-          | About us &nbsp; 
+    #about.about-container
+      .about-text
+        .about_header
+          h1 Count on us to safeguard and secure your community
+        .about_body
+          .about_bodytxt
+            p CAYZ is a leading digital solution dedicated to revolutionizing security and access control within residential communities.
+            p CAYZ allows residents to generate unique security codes for their visitors upon entry and exit. The primary goal is to ensure a secure and efficient access process while providing residents with the ability to manage visitor access conveniently.
+            p(style='font-weight: bold;') Welcome to a safer, smarter way of living with CAYZ.
+          .about-image
+            img(src='/images/padlock.png', alt='About Image')
 
-    .feature(style="margin: 20px auto; width: 90%; background-color: white; border-radius: 10px; padding: 20px;")
-      .image-description-container(style="display: flex; justify-content: space-between; align-items: center;")
-        .image-description
-          img(src="/images/feature1.png" style="width: 40vw; height: 40vw; object-fit: cover; border-radius: 10px;")
-          p(style="font-size: 20px; text-align: center;") Create your own unique password.
-        .image-description
-          img(src="/images/feature2.jpeg" style="width: 40vw; height: 40vw; object-fit: cover; border-radius: 10px;")
-          p(style="font-size: 20px; text-align: center;") Know the danger through cell phone messages.
+    #features.feature_all
+      .feature-header
+        h1 FEATURES
+      .feature-container
+        .feature-box
+          .feature_img
+            img(src='/images/feature1.png', alt='Visitor Code Generation')
+          h2 Visitor Code Generation
+          p CAYZ allows residents to effortlessly generate temporary security codes for their visitors.
+        .feature-box
+          .feature_img
+            img(src='/images/feature2.jpeg', alt='Entry and Exit Verification')
+          h2 Entry and Exit Verification
+          p By ensuring only authorized visitors gain access, CAYZ enhances the overall security posture of residential communities, minimizing risks and vulnerabilities.
+        .feature-box
+          .feature_img
+            img(src='/images/feature3.png', alt='Access Log Maintenance')
+          h2 Access Log Maintenance
+          p CAYZ maintains a comprehensive log of all visitor entries and exits, thereby, offering transparency and accountability in access management.
 
-    .Discover_picture
-      .module(style="margin: 20px auto; position: relative; background-image: url('/images/landing_city.jpg'); background-size: cover; text-align: center; overflow: hidden; padding: 0; margin: 0;")
-        img(src="/images/discover.jpg", alt="sea Image", style="width: 100%; height: auto;")
-        .content(style="position: absolute; top: 20%; left: 0; transform: translateY(-50%); text-align: left; padding: 0 20px; display: flex; flex-direction: column; align-items: center;")
-          p(style="font-size: 3rem; color: white; text-align: center; margin-bottom: 20px; line-height: 1.2;") 
-            | Protect your family space with multiple  features.
-        .button-container(style="position: absolute; bottom: 2rem; right: 2rem;")
-          a(href="#" style="display: inline-block; text-align: center; border-radius: 24px; padding: 10px 20px; background-color: #523CD5; color: white; font-size: 24px; border: none; text-decoration: none;")
-            | Discover more &nbsp; 
+    #interestForm.interestForm
+      div
+        h3 REGISTER YOUR INTEREST
+      form#userInterestForm
+        .form-group
+          label(for='nameInput') Name:
+          input(type='text', id='nameInput', name='name', required)
+        .form-group
+          label(for='emailInput') Email:
+          input(type='email', id='emailInput', name='email', required)
+        .form-group
+          label(for='addressInput') Address:
+          input(type='text', id='addressInput', name='address', required)
+        button(type='submit') Submit
 
-    .qa(style="margin: 20px auto; width: 90%; background-color: white; border-radius: 10px; padding: 20px; position: relative;")
-      h2(style="font-size: 4rem; text-align: center; color: black;") Q&amp;A
-      p(style="font-size: 2.5rem; color: black;") 
-        | How does CAYZ work?
-        br
-        | What are the common functions of CAYZ?
-        br
-        | How do I create a new account?
-        br
-        | Where can I find the contact information for the security team?
-        br
-        | How do I receive security issues or unusual activity?
-        br
-        | How do I set up changes to my code?
-        br
-        | Where can I check my entry and exit records?
-        br
-        | What requirements does the password meet?
-        br
-        | How do I share the code with my visitors and family?
-        br
-        | What if I forget my account number?
+    #faqtop.faq
+      h1 Have any questions?
+      h3 We are ready to assist
+      .faq-container
+        .faq_img
+          img(src='/images/faqimg.png')
+        .faq-formcon
+          form.faq-form
+            .faq-item
+              input(type='checkbox', id='faq1', class='faq-toggle')
+              label(for='faq1', class='faq-question') How does CAYZ work?
+                img.arrow-icon(src='/images/dropdown.png', alt='Down Arrow')
+              .faq-answer
+                p CAYZ enables residents to generate temporary security codes for their visitors. Security personnel verify these codes at entry and exit points to grant access to authorized visitors.
+            .faq-item
+              input(type='checkbox', id='faq2', class='faq-toggle')
+              label(for='faq2', class='faq-question') What are the main features of CAYZ?
+                img.arrow-icon(src='/images/dropdown.png', alt='Down Arrow')
+              .faq-answer
+                p CAYZ offers functionalities such as visitor code generation, entry and exit verification, and access log maintenance for residents and security personnel to manage visitor access efficiently.
+            // Add the remaining FAQ items similarly
+            .faq-item
+              input(type='checkbox', id='faq3', class='faq-toggle')
+              label(for='faq3', class='faq-question') Is CAYZ user-friendly?
+                img.arrow-icon(src='/images/dropdown.png', alt='Down Arrow')
+              .faq-answer
+                p Yes, CAYZ is designed with usability in mind. The user interfaces for residents and security personnel are intuitive and easy to navigate, ensuring a seamless experience for all users.
+            // Add the remaining FAQ items similarly
+            .faq-item
+              input(type='checkbox', id='faq4', class='faq-toggle')
+              label(for='faq4', class='faq-question') Is CAYZ secure?
+                img.arrow-icon(src='/images/dropdown.png', alt='Down Arrow')
+              .faq-answer
+                p Absolutely. CAYZ protects user data and prevent unauthorized access, ensuring the highest level of security for residents and their visitors.
+            // Add the remaining FAQ items similarly
+            .faq-item
+              input(type='checkbox', id='faq5', class='faq-toggle')
+              label(for='faq5', class='faq-question') Can CAYZ be customized to fit different community needs?
+                img.arrow-icon(src='/images/dropdown.png', alt='Down Arrow')
+              .faq-answer
+                p Yes, CAYZ is designed to be flexible and customizable. It can be tailored to meet the specific access control requirements of different residential communities, ensuring it aligns with their unique needs and preferences.
+            // Add the remaining FAQ items similarly
+            .faq-item
+              input(type='checkbox', id='faq6', class='faq-toggle')
+              label(for='faq6', class='faq-question') Is CAYZ scalable for larger communities?
+                img.arrow-icon(src='/images/dropdown.png', alt='Down Arrow')
+              .faq-answer
+                p Yes, CAYZ is designed to be scalable and can accommodate communities of varying sizes. Whether it's a small residential complex or a large gated community, CAYZ can scale to meet the access control needs effectively.
+            
 
-    .footer(style="margin: 0px auto; width: 100%; background-color: black; padding: 0px;")
-      .footer-container(style="display: flex; justify-content: space-evenly; align-items: flex-start;")
-        .content
-          img(src="/images/whitelogo.png" style="width: 8vw; height: 8vw; object-fit: cover; border-radius: 10px;")
-        .content
-          p(style="font-size: 1rem; color: white; text-align: center;") Fast navigation
-          p(style="font-size: 0.8rem; color: white; text-align: center;")
-            | Home
-            br
-            | About us
-            br
-            | Support
-            br
-            | Join us
-        .content
-          p(style="font-size: 1rem; color: white; text-align: center;") Account issues
-          p(style="font-size: 0.8rem; color: white; text-align: center;")
-            | Creating an account
-            br
-            | Forgot password
-            br
-            | Security account
-        .content
-          .social-media-container(style="display: flex; justify-content: space-between; align-items: flex-start;")
-            .social-media
-              img(src="/images/ins.webp" style="width: 2rem; height: 2rem; object-fit: cover; border-radius: 10px;")
-            .social-media
-              img(src="/images/facebook.webp" style="width: 2rem; height: 2rem; object-fit: cover; border-radius: 10px;")
-            .social-media
-              img(src="/images/twitter.webp" style="width: 2rem; height: 2rem; object-fit: cover; border-radius: 10px;")
-          p(style="font-size: 0.5rem; color: white;") 
-            | UK
-            br
-            | Roehampton University, Roehampton Lane, London, SW15 5PH
-            br
-            | 044 12345678
-            br
-            | 123456789@gmail.com
-      .company(style="bottom: 20px; left: 50px; color: white;")
-        p(style="font-size: 0.5rem;") © 2024 CAYZ. All rights reserved.
+    footer.footer
+      .footer-container
+        .footer-logo
+          img(src='/images/whitelogo.png', alt='Logo', class='footer-logo-img')
+        .footer-section
+          h3.footer-heading Fast navigation
+          ul.footer-list
+            a(href='#about')
+              li About us
+            a(href='#faqtop')
+              li FAQs
+            a(href='#interestForm')
+              li Join us
+        .footer-section
+          h3.footer-heading Follow us
+          .social-media-container
+            a(href='#')
+              img(src='/images/ins.webp', alt='Instagram', class='social-media-icon')
+            a(href='#')
+              img(src='/images/facebook.webp', alt='Facebook', class='social-media-icon')
+            a(href='#')
+              img(src='/images/twitter.webp', alt='Twitter', class='social-media-icon')
+        .footer-section
+          h3.footer-heading Contact us
+          p.footer-contact UK
+          p.footer-contact Roehampton University, Roehampton Lane, London, SW15 5PH
+          p.footer-contact 044 12345678
+          p.footer-contact 123456789@gmail.com
+      .company
+        p © 2024 CAYZ. All rights reserved.

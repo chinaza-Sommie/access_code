@@ -131,28 +131,22 @@ app.get("/security/visitors-log", function (req, res) {
 
   db.query(sql).then((results) => {
     res.render("securityPages/visitors-log", { data: results });
-    // console.log(results)
   });
 });
 
-app.post('/add-register', async function (req, res) {
-  params = req.body;
-  
+app.post('/add-resident', async function (req, res) {
   try {
-    const { name, address, email, mobileNumber, dob, password } = req.body; 
-    console.log(req.body); // Logging the received request body for debugging purposes
-
-    var user = new User(email); // Changed from params.Email_Address to email
+    const { name, location, email, mobile, dob, password } = req.body;
+    var user = new User(email);
     const uId = await user.getIdFromEmail(); // Declared uId variable using const
-
+    
     if (uId) {
       // If a valid, existing user is found, set the password and redirect to the users page
-      await user.setUserPassword(password); // Changed from params.Password to password
-      console.log(req.session.User_ID);
+      await user.setUserPassword(password); 
       res.send('Password set successfully');
     } else {
       // If no existing user is found, add a new one
-      const newId = await user.addUser(email, name, address, mobileNumber, dob, password); // Added all user data
+      const newId = await user.addUser(name, location, mobile, dob, password); // Added all user data
       res.redirect('/security/register-resident');
     }
   } catch (err) {
@@ -160,7 +154,6 @@ app.post('/add-register', async function (req, res) {
     res.status(500).send('Error occurred while processing your request'); // Added error status code and response
   }
 });
-
 
 app.post("/send-alert", async function (req, res) {
   params = req.body;

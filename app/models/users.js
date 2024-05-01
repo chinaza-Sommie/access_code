@@ -2,81 +2,90 @@ const db = require("../services/db");
 const bcrypt = require("bcryptjs");
 
 class User {
+      // Id of the user
+      User_ID;
 
-    // Id of the user
-    User_ID;
+      // Name of the user
+      User_Name;
+  
+      // Home Address of the user
+      House_Address;
+  
+      // Email of the user
+      Email_Address;
+  
+      //Phone number of the user
+      Phone_Number;
+  
+      // User's Date of birth
+      Date_Of_Birth;
+  
+      // Is the user a resident or security?
+      User_role;
+  
+      // Password of the user
+      Password;
 
-    // Email of the user
-    Email_Address;
-
-    Password;
-
-    constructor(Email_Address) {
+      constructor(Email_Address) {
         this.email = Email_Address;
     }
-    
-    // Get an existing user id from an email address, or return false if not found
-    // Checks to see if the submitted email address exists in the Users table
+
     async getIdFromEmail() {
-        var sql = "SELECT User_ID FROM user_table WHERE user_table.Email_Address = ?";
-        const result = await db.query(sql, [this.email]);
-        
-        if (JSON.stringify(result) != '[]') {
-            
-            this.id = result[0].User_ID;
-            return this.id;
-        }
-        else {
-            return false; 
+        try {
+            const sql = "SELECT User_ID FROM user_table WHERE Email_Address = ?";
+            const result = await db.query(sql, [this.email]);
+            return result.length > 0 ? result[0].User_ID : false;
+        } catch (error) {
+            console.error("Error in getIdByEmail:", error.message);
+            throw error;
         }
     }
 
-    // async setUserPassword(Password) {
-    //     const pw = await bcrypt.hash(Password, 10);
-    //     this.id = 3
-    //     try{
-    //         var sql = "UPDATE user_table SET Password = ? WHERE user_table.User_ID = 3"
-    //         const result = await db.query(sql, [pw]);
-    //         this.Password = Password;
-    //         return result;
-    //     }catch{
-    //         console.log('problem here')
-    //     }
-    // }
-
-     // Add a password to an existing user
     async setUserPassword(password) {
-        const pw = await bcrypt.hash(password, 10);
-        var sql = "UPDATE User_ID SET password = ? WHERE user_table.User_ID = ?"
-        const result = await db.query(sql, [pw, this.id]);
-        return true;
-    }
-    // Add a new record to the users table    
-    async addUser(password) {
-        const pw = await bcrypt.hash(password, 10);
-        var sql = "INSERT INTO user_table (Email_Address, Password) VALUES (? , ?)";
-        const result = await db.query(sql, [this.email, pw]);
-        console.log(result.User_ID);
-        this.id = result.User_ID;
-        return true;
-    }
-
-    // login functions
-    async authenticate(submitted) {
-        // Get the stored, hashed password for the user
-        var sql = "SELECT password FROM user_table WHERE User_ID = ?";
-        const result = await db.query(sql, [this.id]);
-        const match = await bcrypt.compare(submitted, result[0].password);
-        if (match == true) {
+        try {
+            const pw = await bcrypt.hash(password, 10);
+            const userId = this.id || (await this.getIdByEmail());
+            const sql = "UPDATE user_table SET Password = ? WHERE User_ID = ?";
+            await db.query(sql, [pw, userId]);
             return true;
-        }
-        else {
-            return false;
+        } catch (error) {
+            console.error("Error in setUserPassword:", error.message);
+            throw error;
         }
     }
 
+    async addUser(User_Name, House_Address, Phone_Number, Date_Of_Birth, Password) {
+        
+        try {
+            const pw = await bcrypt.hash(Password, 10);
+            const sql = "INSERT INTO user_table (User_Name, House_Address, Email_Address, Phone_Number, Date_Of_Birth, Password) VALUES (?, ? , ? , ? , ? , ?)";
+            const result = await db.query(sql, [User_Name, House_Address, this.email, Phone_Number, Date_Of_Birth, pw]);
+            this.User_ID = result.insertId
+            return true;
+        } catch (error) {
+            console.error("Error in addUser:", error.message);
+            throw error;
+        }
+    }
+
+    async authenticate(submitted) {
+        try {
+            const userId = this.id || (await this.getIdByEmail());
+            const sql = "SELECT Password FROM user_table WHERE User_ID = ?";
+            const result = await db.query(sql, [userId]);
+            if (result.length > 0) {
+                const match = await bcrypt.compare(submitted, result[0].Password);
+                return match;
+            } else {
+                return false;
+            }
+        } catch (error) {
+            console.error("Error in authenticate:", error.message);
+            throw error;
+        }
+    }
 }
 
-module.exports  = {
+module.exports = {
     User
-}
+};

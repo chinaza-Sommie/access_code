@@ -9,7 +9,7 @@ block title
 block content 
     div.code-gen-container
         div.heading Registration
-        form(action='/add-register', method='POST').form-container 
+        form(action='/add-resident', method='POST').form-container 
             input(type='text' name='name' placeholder="Resident name:" class="input-field")
             input(type='text' name='location' placeholder="Resident Address:" class="input-field")
             input(type='email' name='email' placeholder="Email Address:" class="input-field")
@@ -17,5 +17,3 @@ block content
             input(type='date' name='dob' placeholder="Date of Birth" class="input-field")
             input(type='password' name='password' placeholder="Password:" class="input-field")
             input.all_btn(type='submit' name='generateCode' value='Submit')
-
-//- script(src="/models/script.js") 

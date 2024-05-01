@@ -1,0 +1,48 @@
+/* public/css/popup-colors.css */
+
+.popup-container {
+    background-color: white; 
+    border:  2px solid #f0f0f0;
+    position: fixed;
+    justify-content: center;
+    left: 50%;
+    top: 70%;
+    width: 40%; 
+    height: 30%; 
+    padding: 20px;
+    margin-top: -50px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
+}
+
+.popup-container h2 {
+    color: black;
+    text-align: center;
+    margin-top: 0;
+}
+
+.popup-container p {
+    color: black;
+    text-align: center;
+}
+
+.close-btn {
+    margin-top: 20px; 
+    width: 40px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: blue;
+    cursor: pointer;
+}
+
+.close-btn::after {
+    content: 'Close';
+    margin-left: 5px;
+}
+
+/* 调整按钮位置 */
+.close-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}

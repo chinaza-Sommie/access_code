@@ -13,9 +13,13 @@ block content
             input(type="text")
             
         for i in data  
-            .box_div
+            form(method="POST", action='/delete-log').box_div
                 .upper_box
                     div #{i.visitors}
+                    input(type="hidden" name='codeId' value=i.codeId)
+
+                    button(type='submit')
+                        img(src="delete.png" ) 
                     div Plumbing
                     a(href=`/delete-code/${i.id}`)
                         img(src="/images/delete.png")

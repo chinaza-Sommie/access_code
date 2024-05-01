@@ -226,8 +226,39 @@ app.post("/access-code-generator", async function (req, res) {
       errorMessage:
         "An error occurred while generating the code. Please try again later.",
     });
+  }  
+});
+
+
+app.post("/verification", async function (req, res) {
+  const params = req.body;
+  const codeValue = params.name; // Assuming the input field name is 'name'
+
+  // Regular expression pattern to match 6 digits with no spaces
+  const codePattern = /^\d{6}$/;
+
+  try {
+      // Check if the codeValue matches the pattern
+      if (codePattern.test(codeValue)) {
+          // Create an instance of the Codes class
+        const codes = new Codes();
+
+      // Call getCodeValue to verify the code
+        const verifiedCodeValue = await codes.getCodeValue(codeValue);
+
+      // If code is found, render a success message or redirect
+        res.render("securityPages/verifycode", { successMessage: "Code verified successfully" });
+      } else {
+        res.render("securityPages/verifycode", { errorMessage: err.message });
+      }
+ 
+  } catch (err) {
+      // If code is not found, or there's an error, render an error message or redirect
+      res.render("securityPages/verifycode", { errorMessage: err.message });
   }
 });
+
+
 
 // Start server on port 3000
 app.listen(3000, function () {

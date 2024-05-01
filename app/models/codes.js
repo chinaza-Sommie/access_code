@@ -70,7 +70,19 @@ class Codes {
     async generateCode() {
         return 'GENERATE CODE';
     }
-}
+
+    async getCodeValue(codeValue) { 
+    var sql = "SELECT Code_Value FROM codes_table WHERE Code_Value = ?";
+    const result = await db.query(sql, [codeValue]);
+    
+    if (result.length > 0) {
+        return result[0].Code_Value;
+    } else {
+        throw new Error("Code not found");
+    }
+    
+    }}
+    
 
 module.exports = {
     Codes

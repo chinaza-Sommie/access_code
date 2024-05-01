@@ -4,7 +4,7 @@ block title
 block content 
     div.code-gen-container
         div.heading Generate Code
-        form.form-container(method="POST", action="/access-code-generator")
+        form.form-container(method="POST", action="/access-code-generator").relativeStyle
             //- message display starts here
             if errorMessage
                 p(style='border:1px solid red; background-color:#f8d7da; text-align:center; color: red; width: 80%; padding: 6px; border-radius: 5px; font-weight:bold') #{errorMessage}
@@ -18,3 +18,43 @@ block content
 
             input(type='date' name='timeExpired' placeholder="Time Expired:" class="input-field")
             input.all_btn(type='submit' name='generateCode' value='Generate Code')
+
+            // Modal
+            if codegenerated
+                .modal#successModal
+                    .modal-content
+                        span.close(onclick="closeModal()") &times;
+
+                        div.code-content
+                            for i in codegenerated
+                                div #{i}
+
+                        div.copy-code
+                            div.copy-btn(onclick="copyCodeText()") copy
+                            p copy
+
+            script.
+                function closeModal() {
+                    var modal = document.getElementById("successModal");
+                    modal.style.display = "none";
+                }
+
+                function showModal() {
+                    var modal = document.getElementById("successModal");
+                    modal.style.display = "block";
+                    setTimeout(closeModal, 3000); // Auto-close after 3 seconds
+                }
+
+                function copyCodeText(){
+                    var copyTocopied = document.querySelector('.copy-code p');
+                    var copyText = document.querySelector('.code-content');
+                    var textToCopy = copyText.textContent;
+                    navigator.clipboard.writeText(textToCopy)
+                    copyTocopied.textContent = 'Copied!';
+                    setTimeout(function () {
+                        copyTocopied.textContent = 'Copy';
+                        closeModal();
+                        window.location.href = '/resident/generate-code';
+                    }, 2000)
+                    
+                }

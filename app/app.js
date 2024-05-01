@@ -16,11 +16,13 @@ var session = require("express-session");
 app.use(
   session({
     secret: "secretkeysdfjsflyoifasd",
-    resave: false,
+    resave: true,
     saveUninitialized: true,
-    cookie: { secure: false },
+    rolling: true,
+    cookie: { secure: false, maxAge: 24 * 60 * 60 * 1000 },
   })
 );
+
 
 // views connection
 app.set("view engine", "pug");
@@ -48,7 +50,9 @@ app.get("/login", function (req, res) {
   if (req.session.uid) {
     res.redirect("/resident/generate-code");
   } else {
+    // res.render("login");
     res.render("login");
+    
     res.end();
   }
 });
@@ -62,8 +66,12 @@ app.get("/landing_page", function (req, res) {
 
 // Route for Generating code
 app.get("/resident/generate-code", function (req, res) {
-  res.render("residentPages/codeGenerator");
-
+  if (req.session.uid) {
+    res.render("residentPages/codeGenerator");
+  } else {
+    res.render("login");
+    res.end();
+  }
   // console.log(req.session);
   // if (req.session.uid) {
   // 	res.render("residentPages/codeGenerator");
@@ -77,7 +85,7 @@ app.get("/resident/generate-code", function (req, res) {
 app.get("/resident/accesslogs/:id", function (req, res) {
   var resLog = req.params.id;
   var accesssql =
-    "SELECT ct.Code_Value as code, ct.Visitors_Name as visitors, ct.Code_Status as status, ut.User_Name as name from codes_table ct JOIN user_table ut on ut.User_ID = ct.User_ID WHERE ct.User_ID = ?";
+    "SELECT ct.Code_ID as codeId, ct.Code_Value as code, ct.Visitors_Name as visitors, ct.Code_Status as status, ut.User_Name as name from codes_table ct JOIN user_table ut on ut.User_ID = ct.User_ID WHERE ct.User_ID = ?";
 
   db.query(accesssql, [resLog]).then((results) => {
     res.render("residentPages/access-logs", { data: results });
@@ -168,10 +176,12 @@ app.post("/login-auth", async function (req, res) {
       match = await user.authenticate(params.password);
 
       if (match) {
+
         req.session.uid = uId;
         req.session.loggedIn = true;
         console.log(req.session.id);
-        res.redirect("/resident/generate-code");
+        // res.redirect("/resident/generate-code");
+        res.redirect("/resident/accesslogs/1");
       } else {
         res.render("login", {
           errorMessage: "Oops!! Invalid Email/Password. Try again.",
@@ -201,20 +211,19 @@ app.post("/access-code-generator", async function (req, res) {
   try {
     // Create a new instance of Code
     const codes = new Codes(userId);
-    console.log(timeExpired);
+    var codex = await codes.generateCode(); // this generates the access codes
+    var newCodeType = codex.toString(); // code converted to strting
+    var codeArray = await codes.changeCodetoArray(newCodeType); // code converted to an array
+    
     // Add the code to the database
-    const result = await codes.addCode(
-      codeValue,
-      visitorsName,
-      codeStatus,
-      timeExpired
-    );
-    var codex = await codes.generateCode();
-    console.log;
+    const result = await codes.addCode(codex,visitorsName,codeStatus,timeExpired);
+    console.log(codes);
+    
+    
     if (result) {
-      res.render("residentPages/codeGenerator", {
-        successMessage: "Code generated successfully.",
-      });
+      res.render("residentPages/codeGenerator", {successMessage: "Code generated successfully.", codegenerated:codeArray});
+      // await codes.showModal();
+      
     } else {
       res.render("residentPages/codeGenerator", {
         errorMessage: "Failed to generate code. Please try again.",
@@ -226,6 +235,27 @@ app.post("/access-code-generator", async function (req, res) {
       errorMessage:
         "An error occurred while generating the code. Please try again later.",
     });
+  }
+});
+
+app.post('/delete-log', async function(req, res) {
+  params = req.body;
+
+
+  try{
+    var codeId = params.codeId;
+    const userId = req.session.uid;
+    const codes = new Codes(userId);
+    console.log(codes);
+    console.log(codeId);
+    codeResult = await codes.deleteCode(codeId);
+
+    res.redirect('/resident/accesslogs/'+userId);
+   
+    
+  }
+  catch (error){
+    console.log(error);
   }
 });
 

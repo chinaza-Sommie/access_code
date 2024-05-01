@@ -1,5 +1,6 @@
 // Import express.js
 const express = require("express");
+const { User } = require("./models/user");
 
 const { User } = require("./models/users");
 const { Alerts } = require("./models/alerts");
@@ -8,8 +9,19 @@ const { Codes } = require("./models/codes");
 // Create express app
 var app = express();
 
+<<<<<<< HEAD
 // accept form input
 app.use(express.urlencoded({ extended: true }));
+=======
+// Set the sesssions
+var session = require('express-session');
+app.use(session({
+  secret: 'secretkeysdfjsflyoifasd',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
+>>>>>>> nisenro
 
 // Sessions to login
 var session = require('express-session');
@@ -29,6 +41,8 @@ app.use(express.static("static"));
 
 // Get the functions in the db.js file to use
 const db = require("./services/db");
+app.use(express.urlencoded({ extended: true}))
+
 
 // Create a route for root - /
 app.get("/", function (req, res) { 
@@ -38,6 +52,17 @@ app.get("/", function (req, res) {
 // code generation
 app.get("/code_generator", function (req, res) {
   res.render("residentPages/codeGenerator");
+});
+
+// Create a route for root - /
+app.get("/", function(req, res) {
+  console.log(req.session);
+  if (req.session.uid) {
+  res.send('Welcome back, ' + req.session.uid + '!');
+} else {
+  res.send('Please login to view this page!');
+}
+res.end();
 });
 
 // Route for login page
@@ -134,15 +159,15 @@ app.get("/security/resident-list", function (req, res) {
 
 
 // VISITORS LOG PAGE (SECURITY)
-app.get("/security/visitors-log", function (req, res) {
-    var sql = 
+app.get("/security/visitors-log", function (req, res){
+  var sql = 
     "SELECT ct.Code_Value as code, ct.Visitors_Name as visitors, ct.Code_Status as status, ut.User_Name as name from codes_table ct JOIN user_table ut on ut.User_ID = ct.User_ID";
 
-    db.query(sql).then((results) => {
-        res.render("securityPages/visitors-log", { data: results });
-        // console.log(results)
-    });
+  db.query(sql).then((results) => {
+      res.render("securityPages/visitors-log", { data: results });
+      // console.log(results)
   });
+<<<<<<< HEAD
   
 app.post("/send-alert", async function (req, res) {
   params = req.body
@@ -165,6 +190,64 @@ app.post("/send-alert", async function (req, res) {
   }
  
 });
+=======
+});
+
+// Logout
+app.get('/logout', function (req, res) {
+  req.session.destroy();
+  res.redirect('/login');
+});
+
+app.post('/add-register', async function (req, res) {
+  params = req.body;
+  var user = new User(params.email);
+  try {
+      uId = await user.getIdFromEmail();
+      if (uId) {
+          // If a valid, existing user is found, set the password and redirect to the users single-student page
+          await user.setUserPassword(params.password);
+          console.log(req.session.id);
+          res.send('Password set successfully');
+      }
+      else {
+          // If no existing user is found, add a new one
+          newId = await user.addUser(params.email);
+          res.send('Perhaps a page where a new user sets a programme would be good here');
+      }
+  } catch (err) {
+      console.error(`Error while adding password `, err.message);
+  }
+});
+
+// Check submitted email and password pair
+app.post('/authenticate', async function (req, res) {
+  params = req.body;
+  var user = new User(params.email);
+  try {
+      uId = await user.getIdFromEmail();
+      if (uId) {
+          match = await user.authenticate(params.password);
+          if (match) {
+              req.session.uid = uId;
+              req.session.loggedIn = true;
+              console.log(req.session.id);
+              res.redirect('/student-single/' + uId);
+          }
+          else {
+              // TODO improve the user journey here
+              res.send('invalid password');
+          }
+      }
+      else {
+          res.send('invalid email');
+      }
+  } catch (err) {
+      console.error(`Error while comparing `, err.message);
+  }
+});
+
+>>>>>>> nisenro
 
 
 app.post("/login-auth", async function (req, res) {

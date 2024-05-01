@@ -49,7 +49,15 @@
   justify-content: flex-start;
 }
 
+<<<<<<< HEAD
+.dashboard_body_left {
+  
+}
+
+.dashboard_body_left div {
+=======
 .dashboard_body_left a {
+>>>>>>> ea7412cbb37372ba990d1012ae7bf8b6ea193067
   font-weight: 600;
   font-size: 17px;
   padding: 12px 15px;

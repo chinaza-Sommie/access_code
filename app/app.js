@@ -170,29 +170,7 @@ app.get("/security/visitors-log", function (req, res) {
 
   db.query(sql).then((results) => {
     res.render("securityPages/visitors-log", { data: results });
-    // console.log(results)
   });
-});
-
-
-// Express search
-app.get("/security/visitors-log/search", async function (req, res) {
-  const searchTerm = req.query.searchTerm;
-
-  try {
-      const sql = `
-          SELECT ct.Code_Value as code, ct.Visitors_Name as visitors, ct.Code_Status as status, ut.User_Name as name
-          FROM codes_table ct
-          JOIN user_table ut ON ut.User_ID = ct.User_ID
-          WHERE ct.Visitors_Name LIKE ? OR ct.Code_Value LIKE ?
-      `;
-      const results = await db.query(sql, [`%${searchTerm}%`, `%${searchTerm}%`]);
-
-      res.render("securityPages/visitors-log", { data: results });
-  } catch (error) {
-      console.error("Error searching visitors log:", error);
-      res.status(500).send("Error searching visitors log");
-  }
 });
 
 app.post("/send-alert", async function (req, res) {

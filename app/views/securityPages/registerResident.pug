@@ -5,32 +5,19 @@ extends security-layout
 block title 
     title Register Resident
     
+    
 block content 
     div.code-gen-container
         div.heading Registration
+<<<<<<< HEAD
+        form(action='/add-resident', method='POST').form-container 
+=======
         form.form-container(action='/add-register', method='POST')
+>>>>>>> ea7412cbb37372ba990d1012ae7bf8b6ea193067
             input(type='text' name='name' placeholder="Resident name:" class="input-field")
             input(type='text' name='location' placeholder="Resident Address:" class="input-field")
-            input(type='text' name='email' placeholder="Email Address:" class="input-field")
+            input(type='email' name='email' placeholder="Email Address:" class="input-field")
             input(type='text' name='mobile' placeholder="Mobile Number:" class="input-field")
-            //- Date of Birth Input and Dropdowns
-            .dob-container
-                input(type='text' name='dob' placeholder="Date of Birth: " class="dob-input input-field" onclick="toggleDateDropdowns()")
-                .dob-dropdowns(style='display: none;')
-                    select(name='day' class='input-field')
-                        option(value='') Day
-                        - for (let i = 1; i <= 31; i++)
-                            option(value=i)= i
-                    select(name='month' class='input-field')
-                        option(value='') Month
-                        - const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-                        - for (let i = 0; i < months.length; i++)
-                            option(value=i + 1)= months[i]
-                    select(name='year' class='input-field')
-                        option(value='') Year
-                        - for (let i = 2006; i >= 1920; i--)
-                            option(value=i)= i
-            //- End of Date of Birth Input and Dropdowns
+            input(type='date' name='dob' placeholder="Date of Birth" class="input-field")
             input(type='password' name='password' placeholder="Password:" class="input-field")
             input.all_btn(type='submit' name='generateCode' value='Submit')
-

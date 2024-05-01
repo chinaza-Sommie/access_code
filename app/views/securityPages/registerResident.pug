@@ -3,7 +3,7 @@ extends security-layout
 block content 
     div.code-gen-container
         div.heading Registration
-        form.form-container (action='/add-register', method='POST')
+        form.form-container(action='/add-register', method='POST')
             input(type='text' name='name' placeholder="Resident name:" class="input-field")
             input(type='text' name='location' placeholder="Resident Address:" class="input-field")
             input(type='text' name='email' placeholder="Email Address:" class="input-field")

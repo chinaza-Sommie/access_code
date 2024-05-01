@@ -60,6 +60,11 @@ app.get("/landing_page", function (req, res) {
 
 // ------ RESIDENT ROUTES ----
 
+// Resident notification route
+app.get("/resident/notifications", function (req, res) {
+  res.render("residentPages/resident_notifications");
+});
+
 // Route for Generating code
 app.get("/resident/generate-code", function (req, res) {
   res.render("residentPages/codeGenerator");

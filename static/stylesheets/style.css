@@ -53,6 +53,7 @@
   font-weight: 600;
   font-size: 17px;
   padding: 12px 15px;
+  margin-top: 10px;
   text-decoration: none;
   color: black;
   transition: background-color 0.3s ease;
@@ -318,6 +319,33 @@ button:hover {
   margin-bottom: 5px; 
   flex: 1;
 }
+
+
+.notify {
+  background-color: #e0e0e0;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px; 
+  margin-bottom: 20px; 
+  width: 150vh;
+  justify-content: left;
+  margin-top: 35px;
+}
+
+.notify_upper_box {
+  padding: 5px;
+  font-weight: bold;
+  border-bottom: 1px solid #e0e0e0;
+}
+.notify_lower_box {
+  padding: 5px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+
+
+
+
+
 
 .residents_list {
   display: flex;

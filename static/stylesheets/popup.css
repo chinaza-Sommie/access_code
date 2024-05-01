@@ -1,16 +1,16 @@
 /* public/css/popup-colors.css */
 
 .popup-container {
-    background-color: white; /* 设置背景颜色 */
+    background-color: white; 
     border:  2px solid #f0f0f0;
     position: fixed;
     left: 50%;
     top: 70%;
-    width: 40%; /* 设置弹窗宽度 */
-    height: 30%; /* 设置弹窗高度 */
+    width: 40%; 
+    height: 30%; 
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
 }
 
 .popup-container h2 {
@@ -25,7 +25,7 @@
 }
 
 .close-btn {
-    margin-top: 20px; /* 调整关闭按钮与内容之间的间距 */
+    margin-top: 20px; 
     padding: 5px 10px;
     border-radius: 20px;
     background-color: #f0f0f0;

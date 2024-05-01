@@ -32,11 +32,11 @@ block content
                     td 17:00
 
     script.
-        // 处理搜索表单提交事件
+        
         document.getElementById('searchForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // 阻止表单默认提交行为
+            event.preventDefault(); 
 
             const searchTerm = document.querySelector('input[name="searchTerm"]').value;
-            // 发送搜索请求，跳转到对应的搜索路由
+            
             window.location.href = `/security/visitors-log/search?searchTerm=${encodeURIComponent(searchTerm)}`;
         });

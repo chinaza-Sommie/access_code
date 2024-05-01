@@ -116,7 +116,38 @@ app.get("/security/register-resident", function (req, res) {
 
 // Route for verifying residents codes
 app.get("/security/verify-code", function (req, res) {
-  res.render("securityPages/verifycode");
+  res.render("securityPages/verify-code");
+});
+
+// Route for verifying codes
+app.post('/security/verify-code', async (req, res) => {
+  const { code } = req.body;
+
+  try {
+    const sql = `
+      SELECT Code_Value as code, Visitors_Name as visitors, Code_Status as status
+      FROM codes_table
+      WHERE Code_Value = ?;
+    `;
+    const result = await db.query(sql, [code]);
+
+    if (result.length > 0) {
+      // 找到匹配的验证码，准备更新代码状态为 "Used"
+      const codes = new Codes(); // 创建 Codes 类实例
+
+      // 异步更新代码状态
+      const updateResult = codes.updateCodeStatus(code, 'Used');
+
+      // 渲染页面并将查询结果和更新结果传递给模板
+      res.render('securityPages/verify-code', { result: result[0], updateResult });
+    } else {
+      // 没有找到匹配的验证码
+      res.render('securityPages/verify-code', { result: null });
+    }
+  } catch (error) {
+    console.error('Error verifying code:', error);
+    res.status(500).send('Error verifying code');
+  }
 });
 
 // Route for send alert
@@ -144,7 +175,7 @@ app.get("/security/visitors-log", function (req, res) {
 });
 
 
-// Express 路由处理搜索请求
+// Express search
 app.get("/security/visitors-log/search", async function (req, res) {
   const searchTerm = req.query.searchTerm;
 

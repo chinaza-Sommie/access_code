@@ -76,6 +76,7 @@ class Codes {
     }
   }
 
+
   // Generate Codes
   async generateCode() {
     var randomNum = Math.floor(Math.random() * 900000) + 100000;
@@ -91,6 +92,22 @@ class Codes {
 
     return codeArray;
   }
+  
+  // Update an existing code's status in the codes_table
+    async updateCodeStatus(codeValue, newStatus) {
+        try {
+            const sql = `
+                UPDATE codes_table
+                SET Code_Status = ?
+                WHERE Code_Value = ?;
+            `;
+            await db.query(sql, [newStatus, codeValue]);
+            console.log(`Code status updated to ${newStatus} for code ${codeValue}`);
+        } catch (error) {
+            console.error('Error updating code status:', error);
+            throw new Error('Error updating code status');
+        }
+    }
 
 }
 

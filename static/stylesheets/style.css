@@ -1,3 +1,6 @@
+*{
+  box-sizing: border-box;
+}
 .dashboard_top {
   display: flex;
   justify-content: space-between;
@@ -273,7 +276,7 @@ button:hover {
   border-radius: 5px; 
   margin-bottom: 20px; 
   width: 150vh;
-  margin-top: 15px;
+  margin-top: 5px;
 }
 
 .upper_box {

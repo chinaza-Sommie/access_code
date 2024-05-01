@@ -1,0 +1,21 @@
+
+extends security-layout
+
+//- this is the title of this page (template view)
+block title 
+    title Verify Code
+
+block content 
+    div.verifyCode-container
+        div.heading Verify Code
+        form.formfield(method='POST', action='/verification')
+            //- message display starts here
+            if errorMessage
+                p(style='border:1px solid red; background-color:#f8d7da; text-align:center; color: red; width: 80%; padding: 6px; border-radius: 5px; font-weight:bold') #{errorMessage}
+            else if successMessage
+                p(style='border:1px solid green; background-color:#d4edda; text-align:center; color: green; width: inherit; padding: 6px; border-radius: 5px; font-weight:bold') #{successMessage}
+            //- message display ends here
+            
+            input(type='text' name='name' placeholder="Enter Code Here" class="inputField")
+
+            input.all_btn(type='submit' name='generateCode' value='Confirm Access')

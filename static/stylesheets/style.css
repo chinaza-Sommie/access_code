@@ -61,6 +61,7 @@
   font-weight: 600;
   font-size: 17px;
   padding: 12px 15px;
+  margin-top: 10px;
   text-decoration: none;
   color: black;
   transition: background-color 0.3s ease;
@@ -95,7 +96,6 @@
 
 .container {
   display: flex;
-  background-color: lightgreen;
   height: 100vh;
   /* overflow: hidden; */
 }
@@ -109,43 +109,50 @@
   justify-content: center;
 }
 
+
 .right-container {
-  background-color: #f2f2f2;
+  background-color: #f6fafb;
   width: 50%;
+  height: 660px;
   display: flex;
+  margin-top: -10px;
   align-items: center;
   justify-content: center;
 }
 
 .image {
-  width: 120px;
+  width: 150px;
   height: 120px;
 }
 
 .cayz-name {
-  font-size: 50px;
+  font-size: 60px;
 }
 
 .slogan {
-  font-size: 10px;
+  margin-top: -60px;
+  font-size: 18px;
 }
 
 .right-container form {
-  border: 1px solid black;
+  align-items: center;
+  justify-content: center;
   width: 60%;
 }
-.right-container input[type="text"],
-.right-container input[type="password"] {
-  width: 100%;
+.right-container input {
+  width: 70%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
   border: 1px solid grey;
-  box-sizing: border-box;
   padding: 12px;
   text-align: center;
 }
 a {
-  float: right;
-  font-size: 10px;
-  margin-top: -18px;
+  font-size: 13px;
+  font-weight: bold;
+  margin-top: -23px;
   color: black;
   text-decoration: none;
 }
@@ -167,7 +174,9 @@ a {
   margin-left: 20px;
   border: 1px solid #ccc;
   display: flex;
-  padding: 5px 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 5px 10px;
   border-radius: 25px;
   width: 648px; 
   
@@ -318,6 +327,33 @@ button:hover {
   margin-bottom: 5px; 
   flex: 1;
 }
+
+
+.notify {
+  background-color: #e0e0e0;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px; 
+  margin-bottom: 20px; 
+  width: 150vh;
+  justify-content: left;
+  margin-top: 35px;
+}
+
+.notify_upper_box {
+  padding: 5px;
+  font-weight: bold;
+  border-bottom: 1px solid #e0e0e0;
+}
+.notify_lower_box {
+  padding: 5px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+
+
+
+
+
 
 .residents_list {
   display: flex;

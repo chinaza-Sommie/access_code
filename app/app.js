@@ -64,6 +64,11 @@ app.get("/landing_page", function (req, res) {
 
 // ------ RESIDENT ROUTES ----
 
+// Resident notification route
+app.get("/resident/notifications", function (req, res) {
+  res.render("residentPages/resident_notifications");
+});
+
 // Route for Generating code
 app.get("/resident/generate-code", function (req, res) {
   if (req.session.uid) {
@@ -265,7 +270,7 @@ app.post("/access-code-generator", async function (req, res) {
       errorMessage:
         "An error occurred while generating the code. Please try again later.",
     });
-  }
+  }  
 });
 
 app.post('/delete-log', async function(req, res) {

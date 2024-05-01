@@ -1,9 +1,14 @@
 
 extends security-layout
+
+//- this is the title of this page (template view)
+block title 
+    title Register Resident
+    
 block content 
     div.code-gen-container
         div.heading Registration
-        form.form-container (action='/add-register', method='POST')
+        form.form-container(action='/add-register', method='POST')
             input(type='text' name='name' placeholder="Resident name:" class="input-field")
             input(type='text' name='location' placeholder="Resident Address:" class="input-field")
             input(type='text' name='email' placeholder="Email Address:" class="input-field")
@@ -28,3 +33,4 @@ block content
             //- End of Date of Birth Input and Dropdowns
             input(type='password' name='password' placeholder="Password:" class="input-field")
             input.all_btn(type='submit' name='generateCode' value='Submit')
+

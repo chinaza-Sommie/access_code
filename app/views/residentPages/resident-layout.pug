@@ -3,7 +3,8 @@ doctype html
 html(lang="en")
   head
    
-    title CAYZ
+    block title
+      title CAYZ
     link(rel="stylesheet", type='text/css', href="/stylesheets/style.css")
     link(rel="stylesheet", type='text/css', href="/stylesheets/codegenerator.css")
    
@@ -17,13 +18,13 @@ html(lang="en")
         img(src="/images/Customer.png")
     .body
       .dashboard_body_left
-        div Generate Code
-        div Access Logs
-        div Notifications
-        div Profile
-        div Help
-        div Settings
-        div Log Out
+        a(href="/resident/generate-code") Generate Code
+        a(href="#") Access Logs
+        a(href="#") Notifications
+        a(href="#") Profile
+        a(href="#") Help
+        a(href="#") Settings
+        a(href="/logout") Log Out
 
       .main_body_div
         block content

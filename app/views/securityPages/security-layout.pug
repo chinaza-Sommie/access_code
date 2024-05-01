@@ -4,7 +4,8 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Document
+    block title
+      title Document
     link(rel="stylesheet", type='text/css', href="/stylesheets/style.css")
     link(rel="stylesheet", type='text/css', href="/stylesheets/codegenerator.css")
     script(src="/modules/script.js")
@@ -18,14 +19,14 @@ html(lang="en")
         img(src="/images/Customer.png")
     .body
       .dashboard_body_left
-        div Register Resident
-        div Verify code
-        div Visitors log
-        div Alert
-        div Residents List
-        div Profile
-        div Settings
-        div Log Out
+        a(href="/security/register-resident") Register Resident
+        a(href="/security/verify-code") Verify code
+        a(href="/security/visitors-log") Visitors log
+        a(href="/security/alert") Alert
+        a(href="/security/resident-list") Residents List
+        a(href="#") Profile
+        a(href="#") Settings
+        a(href="/logout") Log Out
 
       .main_body_div
         block content

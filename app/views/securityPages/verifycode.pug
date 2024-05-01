@@ -3,7 +3,7 @@ extends security-layout
 block content 
     div.verifyCode-container
         div.heading Verify Code
-        form.formfield
+        form.formfield ('method')
             input(type='text' name='name' placeholder="Enter Code Here" class="inputField")
 
             input.all_btn(type='submit' name='generateCode' value='Confirm Access')

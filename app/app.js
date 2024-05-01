@@ -189,7 +189,10 @@ app.post('/authenticate', async function (req, res) {
   }
 });
 
+// Check submitted email and password pair
+app.post('/verification', async function (req, res) {
 
+}
 
 // Start server on port 3000
 app.listen(3000, function () {

@@ -2,27 +2,14 @@
 const express = require("express");
 const { User } = require("./models/user");
 
-const { User } = require("./models/users");
+// const { User } = require("./models/users");
 const { Alerts } = require("./models/alerts");
 const { Codes } = require("./models/codes");
 
 // Create express app
 var app = express();
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 9c988fad3a9bf9024df5d8789ff5cd2dc8252fd6
 // Set the sesssions
-var session = require('express-session');
-app.use(session({
-  secret: 'secretkeysdfjsflyoifasd',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false }
-}));
-
-// Sessions to login
 var session = require('express-session');
 app.use(session({
   secret: 'secretkeysdfjsflyoifasd',

@@ -1,7 +1,7 @@
 // Import express.js
 const express = require("express");
 
-// const { User } = require("./models/users");
+const { User } = require("./models/users");
 const { Alerts } = require("./models/alerts");
 const { Codes } = require("./models/codes");
 
@@ -134,6 +134,33 @@ app.get("/security/visitors-log", function (req, res) {
     // console.log(results)
   });
 });
+
+app.post('/add-register', async function (req, res) {
+  params = req.body;
+  
+  try {
+    const { name, address, email, mobileNumber, dob, password } = req.body; 
+    console.log(req.body); // Logging the received request body for debugging purposes
+
+    var user = new User(email); // Changed from params.Email_Address to email
+    const uId = await user.getIdFromEmail(); // Declared uId variable using const
+
+    if (uId) {
+      // If a valid, existing user is found, set the password and redirect to the users page
+      await user.setUserPassword(password); // Changed from params.Password to password
+      console.log(req.session.User_ID);
+      res.send('Password set successfully');
+    } else {
+      // If no existing user is found, add a new one
+      const newId = await user.addUser(email, name, address, mobileNumber, dob, password); // Added all user data
+      res.redirect('/security/register-resident');
+    }
+  } catch (err) {
+    console.error(`Error while adding password:`, err.message); // Improved error message with more details
+    res.status(500).send('Error occurred while processing your request'); // Added error status code and response
+  }
+});
+
 
 app.post("/send-alert", async function (req, res) {
   params = req.body;

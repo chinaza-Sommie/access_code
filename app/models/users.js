@@ -31,6 +31,36 @@ class User {
         }
     }
 
+    // async setUserPassword(Password) {
+    //     const pw = await bcrypt.hash(Password, 10);
+    //     this.id = 3
+    //     try{
+    //         var sql = "UPDATE user_table SET Password = ? WHERE user_table.User_ID = 3"
+    //         const result = await db.query(sql, [pw]);
+    //         this.Password = Password;
+    //         return result;
+    //     }catch{
+    //         console.log('problem here')
+    //     }
+    // }
+
+     // Add a password to an existing user
+    async setUserPassword(password) {
+        const pw = await bcrypt.hash(password, 10);
+        var sql = "UPDATE User_ID SET password = ? WHERE user_table.User_ID = ?"
+        const result = await db.query(sql, [pw, this.id]);
+        return true;
+    }
+    // Add a new record to the users table    
+    async addUser(password) {
+        const pw = await bcrypt.hash(password, 10);
+        var sql = "INSERT INTO user_table (Email_Address, Password) VALUES (? , ?)";
+        const result = await db.query(sql, [this.email, pw]);
+        console.log(result.User_ID);
+        this.id = result.User_ID;
+        return true;
+    }
+
     // login functions
     async authenticate(submitted) {
         // Get the stored, hashed password for the user
@@ -44,22 +74,6 @@ class User {
             return false;
         }
     }
-    async setUserPassword(Password) {
-        const pw = await bcrypt.hash(Password, 10);
-        this.id = 3
-        try{
-            var sql = "UPDATE user_table SET Password = ? WHERE user_table.User_ID = 3"
-            const result = await db.query(sql, [pw]);
-            this.Password = Password;
-            return result;
-        }catch{
-            console.log('problem here')
-        }
-    }
-    
-
-    
-
 
 }
 

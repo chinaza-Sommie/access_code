@@ -1,6 +1,10 @@
 //- THIS IS FOR RESIDENT ACCESS LOGS
 
 extends security-layout
+//- this is the title of this page (template view)
+block title 
+    title Resident List 
+    
 block content 
     .visitors-log-cont
         h3.visitors-subheader RESIDENTS
@@ -17,18 +21,6 @@ block content
             th Registration Date
             
 
-<<<<<<< HEAD
-    .second_main_body
-        h2 RESIDENTS
-        .search_bar
-            img(src="/images/search-icon 1.png")
-        .residents_list
-            for i in data
-                .resident
-                    h3 #{i.User_Name}
-                    div #{i.Address}
-                    div #{i.Phone_Number}
-=======
         for i in data
             tr
                 td.userName
@@ -41,4 +33,3 @@ block content
 
 
     
->>>>>>> 01a64fdd9f68c1ebfe879b761c6597b685c28b4c

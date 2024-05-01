@@ -1,3 +1,6 @@
+*{
+  box-sizing: border-box;
+}
 .dashboard_top {
   display: flex;
   justify-content: space-between;

@@ -6,10 +6,7 @@ const { Alerts } = require("./models/alerts");
 // Create express app
 var app = express();
 
-<<<<<<< HEAD
-// accept form input
-app.use(express.urlencoded({ extended: true }));
-=======
+
 // Set the sesssions
 var session = require('express-session');
 app.use(session({
@@ -18,7 +15,6 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false }
 }));
->>>>>>> nisenro
 
 // views connection
 app.set("view engine", "pug");
@@ -29,6 +25,8 @@ app.use(express.static("static"));
 
 // Get the functions in the db.js file to use
 const db = require("./services/db");
+
+// accept form input
 app.use(express.urlencoded({ extended: true}))
 
 
@@ -38,16 +36,6 @@ app.get("/", function (req, res) {
   res.render("residentPages/codeGenerator");
 });
 
-// Create a route for root - /
-app.get("/", function(req, res) {
-  console.log(req.session);
-  if (req.session.uid) {
-  res.send('Welcome back, ' + req.session.uid + '!');
-} else {
-  res.send('Please login to view this page!');
-}
-res.end();
-});
 
 // Route for login page
 app.get("/login", function (req, res) {
@@ -127,8 +115,6 @@ app.get("/security/resident-list", function (req, res) {
     // res.render("securityPages/resident_list");
 });
 
-
-
 // VISITORS LOG PAGE (SECURITY)
 app.get("/security/visitors-log", function (req, res){
   var sql = 
@@ -138,88 +124,54 @@ app.get("/security/visitors-log", function (req, res){
       res.render("securityPages/visitors-log", { data: results });
       // console.log(results)
   });
-<<<<<<< HEAD
-  
-app.post("/send-alert", async function (req, res) {
-  params = req.body
-  if (params.message == ''){
-    res.render("securityPages/alert", {errorMessage: 'Oops!! This field cannot be empty. Try again.' });
-  }else{
-    try {
-      params = req.body
-      
-      
-      senderId = 1
-      alerts = new Alerts(senderId)
-      await alerts.postAlerts(params.message, senderId)
-      console.log(alerts);
-      res.render("securityPages/alert", {successMessage: 'Alert message has been sent successfuly!' });
-    } catch (err) {
-        
-        res.render("securityPages/alert", {errorMessage: err.message });
-    }
-  }
- 
-});
-=======
-});
-
-// Logout
-app.get('/logout', function (req, res) {
-  req.session.destroy();
-  res.redirect('/login');
 });
 
 app.post('/add-register', async function (req, res) {
-  params = req.body;
-  var user = new User(params.email);
   try {
-      uId = await user.getIdFromEmail();
-      if (uId) {
-          // If a valid, existing user is found, set the password and redirect to the users single-student page
-          await user.setUserPassword(params.password);
-          console.log(req.session.id);
-          res.send('Password set successfully');
-      }
-      else {
-          // If no existing user is found, add a new one
-          newId = await user.addUser(params.email);
-          res.send('Perhaps a page where a new user sets a programme would be good here');
-      }
+    const { name, address, email, mobileNumber, dob, password } = req.body; 
+    console.log(req.body); // Logging the received request body for debugging purposes
+
+    var user = new User(email); // Changed from params.Email_Address to email
+    const uId = await user.getIdFromEmail(); // Declared uId variable using const
+
+    if (uId) {
+      // If a valid, existing user is found, set the password and redirect to the users page
+      await user.setUserPassword(password); // Changed from params.Password to password
+      console.log(req.session.User_ID);
+      res.send('Password set successfully');
+    } else {
+      // If no existing user is found, add a new one
+      const newId = await user.addUser(email, name, address, mobileNumber, dob, password); // Added all user data
+      res.redirect('/security/register-resident');
+    }
   } catch (err) {
-      console.error(`Error while adding password `, err.message);
+    console.error(`Error while adding password:`, err.message); // Improved error message with more details
+    res.status(500).send('Error occurred while processing your request'); // Added error status code and response
   }
 });
 
-// Check submitted email and password pair
-app.post('/authenticate', async function (req, res) {
-  params = req.body;
-  var user = new User(params.email);
-  try {
-      uId = await user.getIdFromEmail();
-      if (uId) {
-          match = await user.authenticate(params.password);
-          if (match) {
-              req.session.uid = uId;
-              req.session.loggedIn = true;
-              console.log(req.session.id);
-              res.redirect('/student-single/' + uId);
-          }
-          else {
-              // TODO improve the user journey here
-              res.send('invalid password');
-          }
-      }
-      else {
-          res.send('invalid email');
-      }
-  } catch (err) {
-      console.error(`Error while comparing `, err.message);
-  }
-});
-
->>>>>>> nisenro
-
+// app.post('/add-register', async function (req, res) {
+  
+//   const { name, address, email, mobileNumber, dob, password } = req.body; 
+//   console.log(req.body)
+//   var user = new User(params.Email_Address);
+//   try {
+//       uId = await user.getIdFromEmail();
+//       if (uId) {
+//           // If a valid, existing user is found, set the password and redirect to the users page
+//           await user.setUserPassword(params.Password);
+//           console.log(req.session.User_ID);
+//           res.send('Password set successfully');
+//       }
+//       else {
+//           // If no existing user is found, add a new one
+//           newId = await user.addUser(params.Email_Address);
+//           res.redirect('/security/register-resident');
+//       }
+//   } catch (err) {
+//       console.error(`Error while adding password `, err.message);
+//   }
+// });
 
 // Start server on port 3000
 app.listen(3000, function () {

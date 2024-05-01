@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 class User {
 
     // Id of the user
-    id;
+    User_ID;
 
     // Email of the user
     email;

@@ -6,8 +6,8 @@ html
     //- meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Login
     //- link(rel='stylesheet', href='../CSS/style.css')
-    style
-      include ../../assets/stylesheets/style.css
+    link(rel="stylesheet", type='text/css', href="/stylesheets/style.css")
+    link(rel="stylesheet", type='text/css', href="/stylesheets/codegenerator.css")
   body
     .container
       .left-container
@@ -22,4 +22,4 @@ html
           br
           a(href="") forgot password?
           br
-          input(type="submit", value="Login")
+          input.all_btn(type="submit", value="Login")

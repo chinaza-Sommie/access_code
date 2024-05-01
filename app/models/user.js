@@ -4,22 +4,25 @@ const db = require('../services/db');
 class User {
 
     // Id of the user
-    id;
+    User_ID;
 
     // Email of the user
-    email;
+    Email_Address;
 
-    constructor(email) {
-        this.email = email;
+    // Password of user
+    Password;
+
+    constructor(Email_Address) {
+        this.email = Email_Address;
     }
     
     // Get an existing user id from an email address, or return false if not found
     async getIdFromEmail() {
-        var sql = "SELECT id FROM Users WHERE Users.email = ?";
+        var sql = "SELECT User_ID FROM user_table WHERE user_table.Email_Address = ?";
         const result = await db.query(sql, [this.email]);
         // TODO LOTS OF ERROR CHECKS HERE..
         if (JSON.stringify(result) != '[]') {
-            this.id = result[0].id;
+            this.id = result[0].User_ID;
             return this.id;
         }
         else {
@@ -31,7 +34,7 @@ class User {
     // Add a password to an existing user
     async setUserPassword(password) {
         const pw = await bcrypt.hash(password, 10);
-        var sql = "UPDATE Users SET password = ? WHERE Users.id = ?"
+        var sql = "UPDATE User_ID SET password = ? WHERE user_table.User_ID = ?"
         const result = await db.query(sql, [pw, this.id]);
         return true;
     }
@@ -40,19 +43,19 @@ class User {
     // Add a new record to the users table    
     async addUser(password) {
         const pw = await bcrypt.hash(password, 10);
-        var sql = "INSERT INTO Users (email, password) VALUES (? , ?)";
+        var sql = "INSERT INTO user_table (Email_Address, Password) VALUES (? , ?)";
         const result = await db.query(sql, [this.email, pw]);
-        console.log(result.insertId);
-        this.id = result.insertId;
+        console.log(result.User_ID);
+        this.id = result.User_ID;
         return true;
     }
 
     // Test a submitted password against a stored password
     async authenticate(submitted) {
         // Get the stored, hashed password for the user
-        var sql = "SELECT password FROM Users WHERE id = ?";
+        var sql = "SELECT Password FROM user_table WHERE User_ID = ?";
         const result = await db.query(sql, [this.id]);
-        const match = await bcrypt.compare(submitted, result[0].password);
+        const match = await bcrypt.compare(submitted, result[0].Password);
         if (match == true) {
             return true;
         }

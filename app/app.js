@@ -214,9 +214,8 @@ app.post("/login-auth", async function (req, res) {
 
         req.session.uid = uId;
         req.session.loggedIn = true;
-        console.log(req.session.id);
-        // res.redirect("/resident/generate-code");
-        res.redirect("/resident/accesslogs/1");
+        // console.log(req.session.id);
+        res.redirect("/resident/generate-code");
       } else {
         res.render("login", {
           errorMessage: "Oops!! Invalid Email/Password. Try again.",

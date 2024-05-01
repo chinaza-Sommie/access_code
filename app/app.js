@@ -2,12 +2,27 @@
 const express = require("express");
 const { User } = require("./models/user");
 
+const { User } = require("./models/users");
 const { Alerts } = require("./models/alerts");
+const { Codes } = require("./models/codes");
+
 // Create express app
 var app = express();
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9c988fad3a9bf9024df5d8789ff5cd2dc8252fd6
 // Set the sesssions
+var session = require('express-session');
+app.use(session({
+  secret: 'secretkeysdfjsflyoifasd',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
+
+// Sessions to login
 var session = require('express-session');
 app.use(session({
   secret: 'secretkeysdfjsflyoifasd',
@@ -31,15 +46,26 @@ app.use(express.urlencoded({ extended: true}))
 
 
 // Create a route for root - /
-app.get("/", function (req, res) {
-  // res.render("login");
+app.get("/", function (req, res) { 
+  res.render("landingpage");
+});
+
+// code generation
+app.get("/code_generator", function (req, res) {
   res.render("residentPages/codeGenerator");
 });
 
 
 // Route for login page
 app.get("/login", function (req, res) {
-  res.render("login");
+  
+  console.log(req.session);
+  if (req.session.uid) {
+		res.redirect('/resident/generate-code');
+	} else {
+		res.render("login");
+    res.end();
+	}
 });
 
 // Route for landing page
@@ -52,6 +78,14 @@ app.get("/landing_page", function (req, res) {
 // Route for Generating code
 app.get("/resident/generate-code", function (req, res) {
   res.render("residentPages/codeGenerator");
+  
+  // console.log(req.session);
+  // if (req.session.uid) {
+	// 	res.render("residentPages/codeGenerator");
+	// } else {
+	// 	res.render("login", {errorMessage: 'Please Login to view that page' });
+  //   res.end();
+  // }
 });
 
 // Route for Checking History logs
@@ -96,14 +130,12 @@ app.get("/security/verify-code", function (req, res) {
   res.render("securityPages/verifycode");
 });
 
+
 // Route for send alert
 app.get("/security/alert", function (req, res) {
   res.render("securityPages/alert");
 });
 
-// app.get("/security/profile", function (req, res) {
-//   res.render("securityPages/profile-security");
-// });
 
 app.get("/security/resident-list", function (req, res) {
     var userTableSql = 
@@ -124,6 +156,12 @@ app.get("/security/visitors-log", function (req, res){
       res.render("securityPages/visitors-log", { data: results });
       // console.log(results)
   });
+});
+
+// Logout
+app.get('/logout', function (req, res) {
+  req.session.destroy();
+  res.redirect('/login');
 });
 
 app.post('/add-register', async function (req, res) {
@@ -150,28 +188,65 @@ app.post('/add-register', async function (req, res) {
   }
 });
 
-// app.post('/add-register', async function (req, res) {
+// Check submitted email and password pair
+
+app.post("/login-auth", async function (req, res) {
+  params = req.body;
+    var user = new User(params.email);
+    try {
+        uId = await user.getIdFromEmail();
+        
+        if (uId) {
+            match = await user.authenticate(params.password);
+
+            if (match) {
+                req.session.uid = uId;
+                req.session.loggedIn = true;
+                console.log(req.session.id);
+                res.redirect("/resident/generate-code");
+            }
+            else {
+                
+                res.render("login", {errorMessage: 'Oops!! Invalid Email/Password. Try again.' });
+            }
+        }
+        else {
+          res.render("login", {errorMessage: 'Oops!! Invalid Email/Password. Try again.' });
+        }
+    } catch (err) {
+        console.error(`Error while comparing `, err.message);
+    }
+});
+
+app.post("/access-code-generator", async function (req, res) {
+  params = req.body;
+  var visitorsName = params.name
+  var purpose = params.purpose
+  var location = params.location
+  var timeExpired = params.timeExpired
+  var codeStatus = "Used"
+  var codeValue = 5000
+  // Assuming you have session information to retrieve user ID
+  const userId = req.session.uid;
   
-//   const { name, address, email, mobileNumber, dob, password } = req.body; 
-//   console.log(req.body)
-//   var user = new User(params.Email_Address);
-//   try {
-//       uId = await user.getIdFromEmail();
-//       if (uId) {
-//           // If a valid, existing user is found, set the password and redirect to the users page
-//           await user.setUserPassword(params.Password);
-//           console.log(req.session.User_ID);
-//           res.send('Password set successfully');
-//       }
-//       else {
-//           // If no existing user is found, add a new one
-//           newId = await user.addUser(params.Email_Address);
-//           res.redirect('/security/register-resident');
-//       }
-//   } catch (err) {
-//       console.error(`Error while adding password `, err.message);
-//   }
-// });
+  try {
+      // Create a new instance of Code
+      const codes = new Codes(userId);
+      console.log(timeExpired)
+      // Add the code to the database
+      const result = await codes.addCode(codeValue, visitorsName, codeStatus, timeExpired);
+      // var codex = await codes.generateCode()
+      // console.log(codex)
+      if (result) {
+          res.render("residentPages/codeGenerator", { successMessage: 'Code generated successfully.' });
+      } else {
+          res.render("residentPages/codeGenerator", { errorMessage: 'Failed to generate code. Please try again.' });
+      }
+  } catch (err) {
+      console.error(`Error while generating code: `, err.message);
+      res.render("residentPages/codeGenerator", { errorMessage: 'An error occurred while generating the code. Please try again later.' });
+  }
+});
 
 // Start server on port 3000
 app.listen(3000, function () {

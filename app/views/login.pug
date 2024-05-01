@@ -1,7 +1,14 @@
 //- extends index 
 
-html
+doctype html
+html(lang="en")
   head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    block title
+      title Login
+    link(rel="stylesheet", type='text/css', href="/stylesheets/style.css")
+    link(rel="stylesheet", type='text/css', href="/stylesheets/codegenerator.css")
     //- meta(charset="UTF-8")
     //- meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Login
@@ -15,10 +22,17 @@ html
         h2.cayz-name CAYZ
         h6.slogan Simplify your Security
       .right-container
-        form(action="/action_page.php")
-          input(type="text", placeholder="Username")
+        form(method='POST', action="/login-auth")
+          //- message display starts here
+          if errorMessage
+            p(style='border:1px solid red; background-color:#f8d7da; text-align:center; color: red; width: 100%; padding: 6px; border-radius: 5px; font-weight:bold') #{errorMessage}
+          else if successMessage
+            p(style='border:1px solid green; background-color:#d4edda; text-align:center; color: green; width: 100%; padding: 6px; border-radius: 5px; font-weight:bold') #{successMessage}
+          //- message display ends here
+
+          input(type="text", name="email", placeholder="Emails")
           br
-          input(type="password", placeholder="Password")
+          input(type="password", name="password" placeholder="Password")
           br
           a(href="") forgot password?
           br

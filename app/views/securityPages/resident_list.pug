@@ -15,9 +15,8 @@ block content
     table.visitors
         tr
             th resident's name
-            th Address 
             th Email
-            th Date of Birth
+            th Phone_Number
             th Registration Date
             
 
@@ -25,8 +24,7 @@ block content
             tr
                 td.userName
                     a(href='/profile/' + i.User_ID) #{i.User_Name}
-                td #{i.Address}
-                td email@gmail.com
+                td #{i.Email_Address}
                 td #{i.Phone_Number}
                 td 27/06/2000
                                

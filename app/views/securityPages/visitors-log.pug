@@ -1,36 +1,42 @@
 extends security-layout
 
-//- this is the title of this page (template view)
-block title 
-    title Visitors log
-    
-block content 
+block title
+    title Visitors Log
+
+block content
     .visitors-log-cont
         h3.visitors-subheader Visitors Log
-        .search-container
-            .search-icon-cont
-                img(src="/images/search-icon 1.png")
-            input(type="text")
-    table.visitors
-        tr
-            th resident's name
-            th code value
-            th visitor's name
-            th Date
-            th purpose of visit
-            th Code status
-            th entry time
-            th exit time
+        form(id="searchForm" action="/security/visitors-log/search" method="GET")
+            .search-container
+                input(type="text", name="searchTerm", placeholder="Enter visitor's name or code value")
 
-        for i in data
+        table.visitors
             tr
-                td #{i.name}
-                td #{i.code}
-                td #{i.visitors}
-                td 25/03/2024
-                td Plumbing
-                td #{i.status}
-                td 12:00
-                td 17:00
+                th resident's name
+                th code value
+                th visitor's name
+                th Date
+                th purpose of visit
+                th Code status
+                th entry time
+                th exit time
+            each i in data
+                tr
+                    td #{i.name}
+                    td #{i.code}
+                    td #{i.visitors}
+                    td 25/03/2024
+                    td Plumbing
+                    td #{i.status}
+                    td 12:00
+                    td 17:00
 
-    - console.log(data)
+    script.
+        
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            const searchTerm = document.querySelector('input[name="searchTerm"]').value;
+            
+            window.location.href = `/security/visitors-log/search?searchTerm=${encodeURIComponent(searchTerm)}`;
+        });

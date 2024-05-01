@@ -1,0 +1,57 @@
+extends security-layout
+
+//- this is the title of this page (template view)
+block title 
+    title Verify Code
+
+block content 
+    div.verifyCode-container
+        h2.heading Verify Code
+        form.formfield(id='verifyCodeForm' action='/security/verify-code' method='POST')
+            input(type='text', name='code', placeholder='Enter Code Here', class='inputField')
+
+            input(type='submit', class='all_btn', value='Confirm Access')
+
+    if result
+        
+        // 弹窗容器
+        div.popup-container#customPopup
+            
+            link(rel='stylesheet', href='/stylesheets/popup.css')
+            h2 ACCESS GRANTED!
+            div
+                p Resident:#{result.visitors}
+            
+            span.close-btn(onclick='togglePopup()')
+
+        // JavaScript 切换弹窗可见性
+        script.
+            function togglePopup() {
+                var popup = document.getElementById("customPopup");
+                if (popup.style.display === "block") {
+                    popup.style.display = "none";
+                } else {
+                    popup.style.display = "block";
+                }
+            }
+    else
+        // 弹窗容器
+        div.popup-container#customPopup
+            
+            link(rel='stylesheet', href='/stylesheets/popup.css')
+            h2 Error
+            div
+                p Input error or incorrect value！
+            
+            span.close-btn(onclick='togglePopup()')
+
+        // JavaScript 切换弹窗可见性
+        script.
+            function togglePopup() {
+                var popup = document.getElementById("customPopup");
+                if (popup.style.display === "block") {
+                    popup.style.display = "none";
+                } else {
+                    popup.style.display = "block";
+                }
+            }

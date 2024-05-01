@@ -1,56 +1,56 @@
 .code-gen-container,
-.verifyCode-container{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    flex-direction: column;
+.verifyCode-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  flex-direction: column;
 }
 
 .code-gen-container .heading,
 .verifyCode-container .heading {
-    font-size: 30px;
-    line-height: 36.31px;
-    font-weight: 800;
-    font-family: Inter;
-    color: #6C6A6A;
+  font-size: 30px;
+  line-height: 36.31px;
+  font-weight: 800;
+  font-family: Inter;
+  color: #6c6a6a;
 }
 
 .code-gen-container .form-container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 40%;
-    margin-top: 3%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 40%;
+  margin-top: 3%;
 }
 
 .code-gen-container .form-container .input-field {
-    border: none;
-    border-bottom: 1px solid black;
-    font-size: 16px;
-    margin-bottom: 35px;
-    width: 100%;
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: 16px;
+  margin-bottom: 35px;
+  width: 100%;
 }
 
 .code-gen-container .dob-container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    margin-top: 3%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 3%;
 }
 
 .dob-container {
-    display: flex;
+  display: flex;
 }
 .dob-container select {
-    flex: 1;
-    margin-right: 10px;
+  flex: 1;
+  margin-right: 10px;
 }
 
 /* .code-gen-container .form-container .btn { */
-    /* width: 100%;
+/* width: 100%;
     background: #0a6684;
     color: white;
     outline: none;
@@ -63,43 +63,108 @@
 
 /* styling for all buttons, use class=all_btn  */
 .all_btn {
-    width: 100%;
-    background: #0a6684;
-    color: white;
-    outline: none;
-    border: none;
-    padding: 15px 0;
-    font-size: 17px;
-    margin-top: 15px;
-    text-transform: uppercase; 
-    cursor: pointer;
+  width: 100%;
+  background: #0a6684;
+  color: white;
+  outline: none;
+  border: none;
+  padding: 15px 0;
+  font-size: 17px;
+  margin-top: 15px;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
 /* style for code verification */
-.verifyCode-container form{
-    display: flex;
-    align-items:center;
-    flex-direction: column;
-    width: 40%;
-    margin-top: 3%;
+.verifyCode-container form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 40%;
+  margin-top: 3%;
 }
 
-.verifyCode-container .formfield .inputField{
-    border:1px solid black;
-    padding: 18px 0;
-    text-align:center;
-    font-size:17px;
-    margin-bottom:35px;
-    width:80%;
+.verifyCode-container .formfield .inputField {
+  border: 1px solid black;
+  padding: 18px 0;
+  text-align: center;
+  font-size: 17px;
+  margin-bottom: 35px;
+  width: 80%;
 }
 
-.verifyCode-container form .submitbtn{
-    width:40%;
-    background:black;
-    color: white;
-    outline:none; 
-    border: none;
-    padding:15px 0;
-    font-size:17px;
-    margin-top:15px
+.verifyCode-container form .submitbtn {
+  width: 40%;
+  background: black;
+  color: white;
+  outline: none;
+  border: none;
+  padding: 15px 0;
+  font-size: 17px;
+  margin-top: 15px;
+}
+.relativeStyle {
+  position: relative;
+}
+#successModal{
+  /* display: none; */
+}
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid #ddd;
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.code-content {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 20%;
+  padding: 20px;
+  font-size: 50px;
+  font-weight: 700;
+}
+.code-content div{
+  border: 1px solid #ddd;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.copy-code{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.copy-btn{
+  background-color: #0a6684;
+  padding:0;
+  color: white;
+  font-size: 40px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.copy-code p{
+  margin-left: 5px;
+  font-size: 20px;
 }

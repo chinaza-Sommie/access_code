@@ -11,11 +11,15 @@ block content
         img(src="/images/search-icon 1.png")
 
         for i in data  
-            .box_div
+            form(method="POST", action='/delete-log').box_div
                 .upper_box
                     div #{i.visitors}
+                    input(type="hidden" name='codeId' value=i.codeId)
+
+                    button(type='submit')
+                        img(src="delete.png" ) 
                     div Plumbing
-                    img(src="delete.png")
+                    img(src="/images/delete.png")
                 .line
                 .lower_box
                     div 25/03/2024

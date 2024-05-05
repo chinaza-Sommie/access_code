@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Apr 30, 2024 at 09:43 AM
+-- Generation Time: Apr 30, 2024 at 08:27 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.8
 
@@ -31,8 +31,26 @@ CREATE TABLE `alerts` (
   `id` int NOT NULL,
   `message` varchar(255) NOT NULL,
   `sender` int NOT NULL,
-  `date` datetime NOT NULL
+  `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `alerts`
+--
+
+INSERT INTO `alerts` (`id`, `message`, `sender`, `date`) VALUES
+(1, 'mary', 1, '2024-04-30 11:03:02'),
+(2, 'hello', 1, '2024-04-30 11:05:17'),
+(3, '', 1, '2024-04-30 11:52:24'),
+(4, 'we', 1, '2024-04-30 11:52:35'),
+(5, 'hello', 1, '2024-04-30 11:53:40'),
+(6, 'hello', 1, '2024-04-30 11:54:35'),
+(7, '', 1, '2024-04-30 11:54:43'),
+(8, 'hello', 1, '2024-04-30 11:55:56'),
+(9, '', 1, '2024-04-30 11:56:08'),
+(10, 'hello', 1, '2024-04-30 12:00:01'),
+(11, 'hello', 1, '2024-04-30 12:01:09'),
+(12, 'hello', 1, '2024-04-30 12:01:53');
 
 -- --------------------------------------------------------
 
@@ -45,20 +63,28 @@ CREATE TABLE `codes_table` (
   `Code_Value` varchar(255) NOT NULL,
   `Visitors_Name` varchar(255) DEFAULT NULL,
   `Code_Status` enum('Used','Not Used') NOT NULL,
-  `User_ID` int DEFAULT NULL
+  `User_ID` int DEFAULT NULL,
+  `timeExpired` timestamp NULL DEFAULT NULL,
+  `dateAdded` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `codes_table`
 --
 
-INSERT INTO `codes_table` (`Code_ID`, `Code_Value`, `Visitors_Name`, `Code_Status`, `User_ID`) VALUES
-(1, '302901', 'Margret Dean', 'Used', 1),
-(2, '000456', 'Favour Doe', 'Not Used', 2),
-(3, '490789', 'Candy Sean', 'Used', 3),
-(4, '012003', 'Mrs Green', 'Used', 1),
-(5, '304906', 'Charles Poppins', 'Not Used', 2),
-(6, '900729', 'Mary Heath', 'Used', 3);
+INSERT INTO `codes_table` (`Code_ID`, `Code_Value`, `Visitors_Name`, `Code_Status`, `User_ID`, `timeExpired`, `dateAdded`) VALUES
+(1, '302901', 'Margret Dean', 'Used', 1, '0000-00-00 00:00:00', '2024-04-30 18:15:48'),
+(2, '000456', 'Favour Doe', 'Not Used', 2, '0000-00-00 00:00:00', '2024-04-30 18:15:48'),
+(3, '490789', 'Candy Sean', 'Used', 3, '0000-00-00 00:00:00', '2024-04-30 18:15:48'),
+(4, '012003', 'Mrs Green', 'Used', 1, '0000-00-00 00:00:00', '2024-04-30 18:15:48'),
+(5, '304906', 'Charles Poppins', 'Not Used', 2, '0000-00-00 00:00:00', '2024-04-30 18:15:48'),
+(6, '900729', 'Mary Heath', 'Used', 3, '0000-00-00 00:00:00', '2024-04-30 18:15:48'),
+(7, '5000', 'austine', 'Used', 1, '2024-05-03 00:00:00', '2024-04-30 19:35:05'),
+(8, '5000', 'austine', 'Used', 1, '2024-05-05 00:00:00', '2024-04-30 19:35:40'),
+(9, '5000', 'Mary', 'Used', 1, '2024-04-30 12:30:00', '2024-04-30 19:42:37'),
+(10, '5000', 'austine', 'Used', 1, '2024-05-04 00:00:00', '2024-04-30 19:44:04'),
+(11, '5000', 'helen', 'Used', 1, '2024-05-05 00:00:00', '2024-04-30 19:50:27'),
+(12, '5000', 'nazz', 'Used', 1, '2024-05-04 00:00:00', '2024-04-30 20:15:20');
 
 -- --------------------------------------------------------
 
@@ -116,13 +142,13 @@ ALTER TABLE `user_table`
 -- AUTO_INCREMENT for table `alerts`
 --
 ALTER TABLE `alerts`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `codes_table`
 --
 ALTER TABLE `codes_table`
-  MODIFY `Code_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Code_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user_table`

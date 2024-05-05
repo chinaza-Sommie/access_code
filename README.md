@@ -1,58 +1,73 @@
-# MySQL, PHPMyAdmin and Node.js (ready for Express development)
+# Introduction 
 
-This will install Mysql and phpmyadmin (including all dependencies to run Phpmyadmin) AND node.js
+This repository contains the source code for a web application aimed at enhancing security and visitor management within residential estates. The application allows residents to generate access codes for visitors, monitors visitor access, and facilitates communication between security personnel and residents during emergencies. 
 
-This receipe is for development - Node.js is run in using supervisor: changes to any file in the app will trigger a rebuild automatically.
+# Setup 
 
-For security, this receipe uses a .env file for credentials.  A sample is provided in the env-sample file. If using these files for a fresh project, copy the env-sample file to a file called .env.  Do NOT commit the changed .env file into your new project for security reasons (in the node package its included in .gitignore so you can't anyway)
+To run the application locally, follow these steps: 
 
-In node.js, we use the MySQl2 packages (to avoid problems with MySQL8) and the dotenv package to read the environment variables.
+Install Node.js and Docker Desktop on your computer. 
 
-Local files are mounted into the container using the 'volumes' directive in the docker-compose.yml for ease of development.
+Clone this repository to your local machine. 
 
-### Super-quickstart your new project:
+Navigate to the project directory in your terminal. 
 
-* Make sure that you don't have any other containers running usind docker ps
-* run ```docker-compose up --build```
+Run npm install to install the required dependencies. 
 
-#### Visit phphmyadmin at:
+Start the Docker containers by running docker-compose up . 
 
-http://localhost:8081/
+Access PHPMyAdmin at http://localhost:8081/ and log in with the provided credentials. 
 
-#### Visit your express app at:
+Visit the Express app at http://localhost:3000. 
 
-http://localhost:3000
+Run npm install express-sessions and npm install bcryptjs 
 
-For reference, see the video at: https://roehampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=6f290a6b-ba94-4729-9632-adcf00ac336e
+# File Structure 
 
-NB if you are running this on your own computer rather than the azure labs that has been set up for you, you will need to install the following:
+/src: Contains the source code for the Node.js application. 
 
-* node.js  (windows: https://nodejs.org/en/download/)
-* docker desktop (for windows, this will also prompt you to install linux subsystem for windows https://docs.docker.com/desktop/windows/install/ )
+/routes: Contains route handlers for different application endpoints. 
 
-### Whats provided in these scaffolding files?
+/views: Contains Pug templates for rendering HTML pages. 
 
+/models: Contains JavaScript files for interactive pages. 
 
-  * A docker setup which will provide you with node.js, mysql and phpmyadmin, including the configuration needed so that both node.js AND phpmyadmin can 'see' and connect to your mysql database.  If you don't use docker you'll have to set up and connect each of these components separately.
-  * A basic starting file structure for a node.js app.
-  * A package.json file that will pull in the node.js libraries required and start your app as needed.
-  * A db.js file which provides all the code needed to connect to the mysql database, using the credentials in the .env file, and which provides a query() function that can send queries to the database and receive a result.  In order to use this (ie. interact with the database, you simply need to include this file in any file you create that needs this database interaction) with the following code:
+app.js: Main entry point for the Express application. 
 
-```const db = require('./services/db');
-```
+/docker: Contains Docker configuration files. 
 
-____
+.env-sample: Sample environment file for storing credentials. 
 
-Useful commands:
+README.md: Documentation file providing instructions and information about the project. 
 
-Get a shell in any of the containers
+# Dependencies 
 
-```bash
-docker exec -it <container name> bash -l
-```
+Express: Web framework for Node.js. 
 
-Once in the database container, you can get a MySQL CLI in the usual way
+Express Sessions: Middleware for managing user sessions. 
 
-```bash
-mysql -uroot -p<password> 
-```
+Bcrypt.js: Library for hashing passwords securely. 
+
+MySQL2: MySQL client for Node.js. 
+
+Dotenv: Package for reading environment variables. 
+
+# Usage 
+
+Log into the security interface using the provided credentials: 
+
+Username: 123@gmail.com 
+
+Password: [Hidden for security] 
+
+Navigate through the application to explore its features and functionalities. 
+
+Contributing 
+
+Contributions to the project are welcome! If you encounter any issues or have suggestions for improvement, please open an issue or submit a pull request. 
+
+License 
+
+This project is licensed under the MIT License. Feel free to use, modify, and distribute the code for your own purposes. 
+
+ 

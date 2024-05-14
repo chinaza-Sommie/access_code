@@ -24,9 +24,9 @@ html(lang="en")
         form(method='POST', action="/login-auth")
           //- message display starts here
           if errorMessage
-            p(style='border:1px solid red; background-color:#f8d7da; text-align:center; color: red; width: 100%; padding: 6px; border-radius: 5px; font-weight:bold') #{errorMessage}
+            p(style='border:1px solid red; background-color:#f8d7da; text-align:center; color: red; width: 70%; padding: 6px; border-radius: 5px; font-weight:bold') #{errorMessage}
           else if successMessage
-            p(style='border:1px solid green; background-color:#d4edda; text-align:center; color: green; width: 100%; padding: 6px; border-radius: 5px; font-weight:bold') #{successMessage}
+            p(style='border:1px solid green; background-color:#d4edda; text-align:center; color: green; width: 70%; padding: 6px; border-radius: 5px; font-weight:bold') #{successMessage}
           //- message display ends here
 
           input(type="text", name="email", placeholder="Email")

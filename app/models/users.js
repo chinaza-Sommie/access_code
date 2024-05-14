@@ -34,12 +34,31 @@ class User {
         try {
             const sql = "SELECT User_ID FROM user_table WHERE Email_Address = ?";
             const result = await db.query(sql, [this.email]);
-            return result.length > 0 ? result[0].User_ID : false;
+            if(result.length > 0){
+                this.User_ID = result[0].User_ID;
+                return this.User_ID;
+            }else{
+                return false;
+            }
+            // return result.length > 0 ? this.User_Id = result[0].User_ID : false;
         } catch (error) {
             console.error("Error in getIdByEmail:", error.message);
             throw error;
         }
     }
+
+    async getAllUserDetails() {
+        try {
+            const sql = "SELECT User_role FROM user_table WHERE User_ID = ?";
+            const result = await db.query(sql, [this.User_ID]);
+            this.User_role = result[0].User_role;
+            return this.User_role;
+        } catch (error) {
+            console.error("Error in getAllUserDetails:", error.message);
+            throw error;
+        }
+    }
+    
 
     async setUserPassword(password) {
         try {
@@ -68,20 +87,24 @@ class User {
         }
     }
 
+    
+    // This validates user for login
     async authenticate(submitted) {
-        try {
-            const userId = this.id || (await this.getIdByEmail());
-            const sql = "SELECT Password FROM user_table WHERE User_ID = ?";
-            const result = await db.query(sql, [userId]);
-            if (result.length > 0) {
-                const match = await bcrypt.compare(submitted, result[0].Password);
-                return match;
-            } else {
+
+        try{
+            var sql = "SELECT Password FROM user_table WHERE User_ID = ?";
+            const result = await db.query(sql, [this.User_ID]);
+            const match = await bcrypt.compare(submitted, result[0].Password);
+            if (match == true) {
+                return true;
+            }
+            else {
+                console.log('does not work');
                 return false;
             }
-        } catch (error) {
-            console.error("Error in authenticate:", error.message);
-            throw error;
+        }
+        catch (error){
+            console.log("error:",error.message); 
         }
     }
 }

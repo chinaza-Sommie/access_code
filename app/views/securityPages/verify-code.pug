@@ -12,7 +12,7 @@ block content
 
             input(type='submit', class='all_btn', value='Confirm Access')
 
-    if result
+    if resultSuccess
         
         // 弹窗容器
         div.popup-container#customPopup
@@ -20,7 +20,7 @@ block content
             link(rel='stylesheet', href='/stylesheets/popup.css')
             h2 ACCESS GRANTED!
             div
-                p Resident:#{result.visitors}
+                p Resident:#{resultSuccess.visitors}
             
             span.close-btn(onclick='togglePopup()')
 
@@ -34,7 +34,7 @@ block content
                     popup.style.display = "block";
                 }
             }
-    else
+    else if resultError
         // 弹窗容器
         div.popup-container#customPopup
             
@@ -55,3 +55,4 @@ block content
                     popup.style.display = "block";
                 }
             }
+    else 

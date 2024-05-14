@@ -23,11 +23,7 @@ class Alerts {
         }
     }
 
-    // async postAlerts(note, date, senderId) {
-    //     var sql = "INSERT INTO StudentNotes (massage, senderId, date) VALUES (?, ?, ?)";
-    //     const result = await db.query(sql, [massage, senderId, date]);
-    //     return result;
-    // }
+    
     async postAlerts(message, senderId) {
         try{
             var sql = "INSERT INTO alerts (message, sender) VALUES (?, ?)";

@@ -7,9 +7,11 @@ block title
 
 block content 
     .second_main_body(style="text-align: left;")  
-        .notify
-            .notify_upper_box
-                div Security alert!
-            .line
-            .notify_lower_box
-                div There is a reported incident nearby. Residents should quickly lock all doors
+        for alert in data
+            .notify
+                .notify_upper_box
+                    div Security alert!
+                    div #{alert.date.toDateString()} || #{alert.date.toLocaleTimeString()}
+                .line
+                .notify_lower_box
+                    div #{alert.message}
